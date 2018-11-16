@@ -35,7 +35,7 @@ export default class Header extends Component {
           <Nav className="ml-auto" navbar>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
-                Username
+                {this.props.who}
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>

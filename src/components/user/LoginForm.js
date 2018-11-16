@@ -7,8 +7,7 @@ class Login extends Component {
     super();
     this.state = {
       username: '',
-      password: '',
-      loggedIn: false
+      password: ''
     };
   }
 
@@ -20,22 +19,19 @@ class Login extends Component {
     this.setState({ password: event.target.value });
   };
 
-  isLoggedin = (status) => {
-    this.setState({ loggedIn: status });
-    return status;
-  };
-
   loginHandler = (event) => {
-    Auth.authenticate(this.state.username, this.state.password, this.isLoggedin);
+    event.preventDefault();
+    Auth.authenticate(this.state.username, this.state.password, this.props.setLogin);
   };
 
   render() {
-    console.log('is loggedin: ', this.state.loggedIn);
     return (
       <div>
-        <input onChange={this.usernameHandler} type="text" value={this.state.username} />
-        <input onChange={this.passwordHandler} type="password" value={this.state.password} />
-        <Button onClick={this.loginHandler}>Login</Button>
+        <form onSubmit={this.loginHandler}>
+          <input onChange={this.usernameHandler} type="text" value={this.state.username} />
+          <input onChange={this.passwordHandler} type="password" value={this.state.password} />
+          <button type="submit">Login</button>
+        </form>
       </div>
     );
   }
