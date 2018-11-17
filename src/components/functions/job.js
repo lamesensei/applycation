@@ -36,6 +36,23 @@ const Job = {
       const { id } = result;
       callback(id);
     });
+  },
+  find: (id, callback) => {
+    const query = `{
+  application(where: {id: {_eq: ${id}}}){
+    title
+    company{
+      id
+      name
+      address
+    }
+  }
+}`;
+
+    gqlClient.request(query).then((data) => {
+      const result = data.application[0];
+      return callback(result);
+    });
   }
 };
 
