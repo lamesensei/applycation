@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Nav, NavLink } from 'reactstrap';
-import { AuthConsumer } from '../auth/AuthContext';
+import { Nav } from 'reactstrap';
 
 class Left extends Component {
   render() {
     return (
       <Nav vertical>
-        <Link className="nav-link" to="/test1">
-          test1
+        <Link className="nav-link" to="/job/apply">
+          New Job
         </Link>
         <Link className="nav-link" to="/test2">
           test2

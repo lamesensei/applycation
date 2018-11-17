@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Auth from '../../functions/auth';
 import { AuthConsumer } from '../auth/AuthContext';
 
 class Login extends Component {
@@ -19,12 +18,12 @@ class Login extends Component {
     this.setState({ password: event.target.value });
   };
 
-//   redirectHandler = () => {
-//     if (localStorage.isAuth !== 'false') {
-//       console.log('rerouting', localStorage.isAuth);
-//       this.props.history.push('/');
-//     }
-//   };
+  //   redirectHandler = () => {
+  //     if (localStorage.isAuth !== 'false') {
+  //       console.log('rerouting', localStorage.isAuth);
+  //       this.props.history.push('/');
+  //     }
+  //   };
 
   render() {
     return (

@@ -20,8 +20,8 @@ const Auth = {
 
     gqlClient.request(login).then((data) => {
       if (data.user.length > 0) {
-        if (data.user[0].name === user && data.user[0].password === pass)
-          return callback('true', user);
+        const { name, password, id } = data.user[0];
+        if (name === user && password === pass) return callback('true', name, id);
         return callback('false');
       }
       return callback('false');
