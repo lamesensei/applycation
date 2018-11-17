@@ -8,7 +8,8 @@ class AuthProvider extends Component {
     super();
     this.state = {
       isAuth: localStorage.isAuth || 'false',
-      who: localStorage.who || ''
+      who: localStorage.who || '',
+      id: localStorage.id || ''
     };
   }
 
@@ -16,12 +17,14 @@ class AuthProvider extends Component {
     new Promise((resolve) => resolve(Auth.authenticate(user, pass, this.success)));
   };
 
-  success = (status, who) => {
+  success = (status, who, id) => {
     localStorage.setItem('isAuth', status);
     localStorage.setItem('who', who);
+    localStorage.setItem('id', id);
     this.setState({
       isAuth: status,
-      who: who
+      who: who,
+      id: id
     });
   };
 
@@ -41,7 +44,7 @@ class AuthProvider extends Component {
         value={{
           isAuth: this.state.isAuth,
           who: this.state.who,
-          verify: this.verify,
+          id: this.state.id,
           login: this.login,
           logout: this.logout
         }}
