@@ -19,23 +19,41 @@ class Login extends Component {
     this.setState({ password: event.target.value });
   };
 
-  //   loginHandler = (event) => {
-  //     event.preventDefault();
-  //   };
+//   redirectHandler = () => {
+//     if (localStorage.isAuth !== 'false') {
+//       console.log('rerouting', localStorage.isAuth);
+//       this.props.history.push('/');
+//     }
+//   };
 
   render() {
     return (
       <AuthConsumer>
-        {({ login }) => {
+        {({ login, isAuth }) => {
           return (
             <form
-              onSubmit={(event) => {
+              onSubmit={async (event) => {
                 event.preventDefault();
-                login(this.state.username, this.state.password);
+                try {
+                  await login(this.state.username, this.state.password);
+                  //this.redirectHandler();
+                } catch (err) {
+                  console.log(err);
+                }
               }}
             >
-              <input onChange={this.usernameHandler} type="text" value={this.state.username} />
-              <input onChange={this.passwordHandler} type="password" value={this.state.password} />
+              <input
+                onChange={this.usernameHandler}
+                type="text"
+                value={this.state.username}
+                required
+              />
+              <input
+                onChange={this.passwordHandler}
+                type="password"
+                value={this.state.password}
+                required
+              />
               <button type="submit">Login</button>
             </form>
           );

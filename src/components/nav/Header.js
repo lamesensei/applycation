@@ -27,6 +27,7 @@ export default class Header extends Component {
       isOpen: !this.state.isOpen
     });
   }
+
   render() {
     return (
       <Navbar light expand="md">
@@ -36,15 +37,16 @@ export default class Header extends Component {
           <Nav className="ml-auto" navbar>
             <AuthConsumer>
               {({ isAuth, logout, who }) =>
-                isAuth ? (
+                isAuth === 'true' ? (
                   <UncontrolledDropdown nav inNavbar>
                     <DropdownToggle nav caret>
                       {who}
                     </DropdownToggle>
                     <DropdownMenu right>
                       <DropdownItem>
-                        <Link to="/test1">Profile</Link>
+                        <Link to="/profile">Profile</Link>
                       </DropdownItem>
+                      <DropdownItem divider />
                       <DropdownItem>
                         <Link onClick={logout} to="/">
                           Logout

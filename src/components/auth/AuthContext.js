@@ -7,12 +7,14 @@ class AuthProvider extends Component {
   constructor() {
     super();
     this.state = {
-      isAuth: localStorage.isAuth,
-      who: localStorage.who
+      isAuth: localStorage.isAuth || 'false',
+      who: localStorage.who || ''
     };
   }
 
-  login = (user, pass) => Auth.authenticate(user, pass, this.success);
+  login = (user, pass) => {
+    new Promise((resolve) => resolve(Auth.authenticate(user, pass, this.success)));
+  };
 
   success = (status, who) => {
     localStorage.setItem('isAuth', status);
@@ -33,6 +35,7 @@ class AuthProvider extends Component {
   };
 
   render() {
+    console.log(this.state);
     return (
       <AuthContext.Provider
         value={{
