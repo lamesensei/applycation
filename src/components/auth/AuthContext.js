@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Auth from '../../functions/auth';
+import Auth from '../functions/auth';
 
 const AuthContext = React.createContext();
 
