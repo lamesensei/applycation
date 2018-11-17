@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
 import Auth from '../../functions/auth';
+import { AuthConsumer } from '../auth/AuthContext';
 
 class Login extends Component {
   constructor() {
@@ -19,20 +19,28 @@ class Login extends Component {
     this.setState({ password: event.target.value });
   };
 
-  loginHandler = (event) => {
-    event.preventDefault();
-    Auth.authenticate(this.state.username, this.state.password, this.props.setLogin);
-  };
+  //   loginHandler = (event) => {
+  //     event.preventDefault();
+  //   };
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.loginHandler}>
-          <input onChange={this.usernameHandler} type="text" value={this.state.username} />
-          <input onChange={this.passwordHandler} type="password" value={this.state.password} />
-          <button type="submit">Login</button>
-        </form>
-      </div>
+      <AuthConsumer>
+        {({ login }) => {
+          return (
+            <form
+              onSubmit={(event) => {
+                event.preventDefault();
+                login(this.state.username, this.state.password);
+              }}
+            >
+              <input onChange={this.usernameHandler} type="text" value={this.state.username} />
+              <input onChange={this.passwordHandler} type="password" value={this.state.password} />
+              <button type="submit">Login</button>
+            </form>
+          );
+        }}
+      </AuthConsumer>
     );
   }
 }

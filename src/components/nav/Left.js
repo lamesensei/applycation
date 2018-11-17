@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, NavLink } from 'reactstrap';
+import { AuthConsumer } from '../auth/AuthContext';
 
-export default class Left extends Component {
+class Left extends Component {
   render() {
-    let logoutButton;
-    if (localStorage.loggedIn) {
-      logoutButton = (
-        <NavLink href="#" onClick={this.props.logout}>
-          Log Out
-        </NavLink>
-      );
-    }
     return (
       <Nav vertical>
         <Link className="nav-link" to="/test1">
@@ -20,11 +13,9 @@ export default class Left extends Component {
         <Link className="nav-link" to="/test2">
           test2
         </Link>
-        <Link className="nav-link" to="/login">
-          login
-        </Link>
-        {logoutButton}
       </Nav>
     );
   }
 }
+
+export default Left;
