@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Job from '../functions/job';
-import { Button } from 'reactstrap';
+import { Button, UncontrolledAlert } from 'reactstrap';
 import StageForm from '../stage/StageForm';
 
 class ShowJob extends Component {
@@ -9,7 +9,8 @@ class ShowJob extends Component {
     this.state = {
       title: undefined,
       company: {},
-      showStageForm: false
+      showStageForm: false,
+      stageCreated: undefined
     };
   }
 
@@ -22,8 +23,10 @@ class ShowJob extends Component {
   };
 
   toggleStageForm = (data) => {
-    console.log(data);
-    this.setState({ showStageForm: !this.state.showStageForm });
+    this.setState({
+      showStageForm: !this.state.showStageForm,
+      stageCreated: data.name
+    });
   };
 
   componentDidMount = () => {
@@ -38,7 +41,7 @@ class ShowJob extends Component {
             {this.state.title}, <small>{this.state.company.name}</small>
           </h1>
         ) : (
-          <h1 className="d-none">Loading</h1>
+          <h1 className="tada">Loading</h1>
         )}
         <div>
           <Button onClick={this.toggleStageForm}>Add Stage</Button>
@@ -48,7 +51,13 @@ class ShowJob extends Component {
             <StageForm jobId={this.props.match.params.id} toggleOff={this.toggleStageForm} />
           </div>
         ) : (
-          <div />
+          <div>
+            {this.state.stageCreated && (
+              <UncontrolledAlert color="success">
+                {this.state.stageCreated} created!
+              </UncontrolledAlert>
+            )}
+          </div>
         )}
       </div>
     );
