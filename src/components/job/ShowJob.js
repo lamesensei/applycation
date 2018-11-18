@@ -2,19 +2,22 @@ import React, { Component } from 'react';
 import Job from '../functions/job';
 import { Button, UncontrolledAlert } from 'reactstrap';
 import StageForm from '../stage/StageForm';
+import StagePanel from '../stage/StagePanel';
 
 class ShowJob extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.jobId = props.match.params.id;
     this.state = {
       title: undefined,
       company: {},
       showStageForm: false,
-      stageCreated: undefined
+      stageCreated: undefined,
+      stages: []
     };
   }
 
-  updatePage = (data) => {
+  updateTitle = (data) => {
     const { title, company } = data;
     this.setState({
       title: title,
@@ -22,7 +25,12 @@ class ShowJob extends Component {
     });
   };
 
+  populateStages = (data) => {
+    this.setState({ stages: [...data.stages] });
+  };
+
   toggleStageForm = (data) => {
+    Job.stages(this.jobId, this.populateStages);
     this.setState({
       showStageForm: !this.state.showStageForm,
       stageCreated: data.name
@@ -30,10 +38,14 @@ class ShowJob extends Component {
   };
 
   componentDidMount = () => {
-    Job.find(this.props.match.params.id, this.updatePage);
+    Job.find(this.jobId, this.updateTitle);
+    Job.stages(this.jobId, this.populateStages);
   };
 
   render() {
+    const stages = this.state.stages.map((item) => {
+      return <StagePanel key={item.id} name={item.name} notes={item.value} />;
+    });
     return (
       <div>
         {this.state.title ? (
@@ -59,6 +71,7 @@ class ShowJob extends Component {
             )}
           </div>
         )}
+        <div>{stages}</div>
       </div>
     );
   }

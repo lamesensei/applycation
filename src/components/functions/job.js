@@ -53,6 +53,22 @@ const Job = {
       const result = data.application[0];
       return callback(result);
     });
+  },
+  stages: (id, callback) => {
+    const query = `{
+    application(where: {id: {_eq: ${id}}}){
+            stages{
+                id
+                name
+                value
+                }
+            }
+     }`;
+
+    gqlClient.request(query).then((data) => {
+      const result = data.application[0];
+      return callback(result);
+    });
   }
 };
 
