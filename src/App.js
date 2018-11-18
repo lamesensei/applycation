@@ -14,10 +14,10 @@ class App extends Component {
           <Header />
           <div className="container-fluid h-100">
             <div className="row">
-              <div className="col-md-2 col-sm-1 side">
+              <div className="col-md-2 side">
                 <Left />
               </div>
-              <div className="col-md-10 col-sm-11 main border-left">
+              <div className="col-md-10 main border-left">
                 <Switch>
                   <Route path="/login" render={(props) => <LoginForm {...props} />} />
                   <Route path="/job/apply" component={ApplicationForm} />
