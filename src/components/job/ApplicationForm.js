@@ -48,6 +48,7 @@ class ApplicationForm extends Component {
               id="title"
               value={this.state.title}
               placeholder="Enter application title"
+              required
               onChange={this.changeHandler}
             />
           </FormGroup>
@@ -59,6 +60,7 @@ class ApplicationForm extends Component {
               id="companyName"
               placeholder="Enter company name"
               value={this.state.companyName}
+              required
               onChange={this.changeHandler}
             />
           </FormGroup>

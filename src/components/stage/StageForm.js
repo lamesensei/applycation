@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, InputGroup, InputGroupAddon } from 'reactstrap';
 import Stage from '../functions/stage';
 
 class StageForm extends Component {
@@ -27,30 +27,34 @@ class StageForm extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Add Stage</h3>
+      <div className="m-2">
         <Form onSubmit={this.submitHandler}>
           <FormGroup>
-            <Label for="name">Name</Label>
-            <Input
-              type="text"
-              name="name"
-              id="name"
-              value={this.state.name}
-              placeholder="Enter stage title"
-              onChange={this.changeHandler}
-            />
+            <InputGroup>
+              <InputGroupAddon addonType="prepend">Name</InputGroupAddon>
+              <Input
+                type="text"
+                name="name"
+                id="name"
+                value={this.state.name}
+                placeholder="Enter stage title"
+                required
+                onChange={this.changeHandler}
+              />
+            </InputGroup>
           </FormGroup>
           <FormGroup>
-            <Label for="companyName">Notes</Label>
-            <Input
-              type="textarea"
-              name="notes"
-              id="notes"
-              placeholder="Enter notes"
-              value={this.state.notes}
-              onChange={this.changeHandler}
-            />
+            <InputGroup>
+              <InputGroupAddon addonType="prepend">Notes</InputGroupAddon>
+              <Input
+                type="textarea"
+                name="notes"
+                id="notes"
+                placeholder="Enter notes"
+                value={this.state.notes}
+                onChange={this.changeHandler}
+              />
+            </InputGroup>
           </FormGroup>
           <Button>Submit</Button>
         </Form>
