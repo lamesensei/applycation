@@ -79,7 +79,7 @@ class JobView extends Component {
           <h1 className="tada">Loading</h1>
         )}
         <JobNav changeTab={this.changeTab} currentTab={this.state.currentTab} />
-        <div>
+        <div className="mt-2 mb-2">
           <Button color="primary" size="sm" onClick={this.toggleStageForm}>
             Add Stage
           </Button>

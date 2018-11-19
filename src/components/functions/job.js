@@ -89,6 +89,25 @@ const Job = {
       const result = data.application[0];
       return callback(result);
     });
+  },
+
+  destroy: (id, callback) => {
+    const query = `mutation delete_job {
+  delete_stage(where: {application_id: {_eq: ${id}}}) {
+    affected_rows
+  }
+  delete_application(where: {id: {_eq: ${id}}}) {
+    affected_rows
+     returning {
+      title
+    }
+  }
+}`;
+
+    gqlClient.request(query).then((data) => {
+      const { title } = data.delete_application.returning[0];
+      return callback(title);
+    });
   }
 };
 
