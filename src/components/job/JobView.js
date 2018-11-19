@@ -14,6 +14,7 @@ class JobView extends Component {
       company: {},
       showStageForm: false,
       stageCreated: undefined,
+      stageDeleted: undefined,
       stages: [],
       currentTab: 'stages'
     };
@@ -44,6 +45,11 @@ class JobView extends Component {
     });
   };
 
+  deleteHandler = (name) => {
+    this.setState({ stageDeleted: name });
+    Job.stages(this.jobId, this.populateStages);
+  };
+
   componentDidMount = () => {
     if (localStorage.id) {
       Job.find(this.jobId, this.updateTitle);
@@ -53,7 +59,15 @@ class JobView extends Component {
 
   render() {
     const stages = this.state.stages.map((item) => {
-      return <StagePanel key={item.id} name={item.name} notes={item.value} />;
+      return (
+        <StagePanel
+          key={item.id}
+          id={item.id}
+          name={item.name}
+          notes={item.value}
+          deleteHandler={this.deleteHandler}
+        />
+      );
     });
     return (
       <div>
@@ -66,7 +80,9 @@ class JobView extends Component {
         )}
         <JobNav changeTab={this.changeTab} currentTab={this.state.currentTab} />
         <div>
-          <Button onClick={this.toggleStageForm}>Add Stage</Button>
+          <Button color="primary" size="sm" onClick={this.toggleStageForm}>
+            Add Stage
+          </Button>
         </div>
         <Collapse isOpen={this.state.showStageForm}>
           <StageForm jobId={this.props.match.params.id} toggleOff={this.toggleStageForm} />
@@ -76,6 +92,9 @@ class JobView extends Component {
             <UncontrolledAlert color="success">
               {this.state.stageCreated} created!
             </UncontrolledAlert>
+          )}
+          {this.state.stageDeleted && (
+            <UncontrolledAlert color="danger">{this.state.stageDeleted} deleted!</UncontrolledAlert>
           )}
         </div>
         <div>{stages}</div>

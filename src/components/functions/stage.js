@@ -50,6 +50,23 @@ const Stage = {
       const result = data.application[0];
       return callback(result);
     });
+  },
+
+  destroy: (id, callback) => {
+    const query = `mutation delete_stage {
+  delete_stage(where: {id: {_eq: ${id}}}) {
+    affected_rows
+    returning {
+      id
+      name
+    }
+  }
+}`;
+
+    gqlClient.request(query).then((data) => {
+      const { name } = data.delete_stage.returning[0];
+      return callback(name);
+    });
   }
 };
 
