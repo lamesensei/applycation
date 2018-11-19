@@ -3,7 +3,7 @@ import gqlClient from './gql';
 const Job = {
   list: (userId, callback) => {
     const query = `query {
-  user(where:{id:{_eq: 1}}){
+  user(where:{id:{_eq: ${userId}}}){
     applications{
       id
       title
