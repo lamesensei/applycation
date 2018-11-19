@@ -3,6 +3,7 @@ import Job from '../functions/job';
 import { Button, UncontrolledAlert } from 'reactstrap';
 import StageForm from '../stage/StageForm';
 import StagePanel from '../stage/StagePanel';
+import NavTab from './NavTab';
 
 class ShowJob extends Component {
   constructor(props) {
@@ -13,7 +14,8 @@ class ShowJob extends Component {
       company: {},
       showStageForm: false,
       stageCreated: undefined,
-      stages: []
+      stages: [],
+      currentTab: 'stages'
     };
   }
 
@@ -23,6 +25,11 @@ class ShowJob extends Component {
       title: title,
       company: company
     });
+  };
+
+  changeTab = (event) => {
+    const attribute = event.target.parentElement.getAttribute('name');
+    this.setState({ currentTab: attribute });
   };
 
   populateStages = (data) => {
@@ -55,6 +62,7 @@ class ShowJob extends Component {
         ) : (
           <h1 className="tada">Loading</h1>
         )}
+        <NavTab changeTab={this.changeTab} currentTab={this.state.currentTab} />
         <div>
           <Button onClick={this.toggleStageForm}>Add Stage</Button>
         </div>

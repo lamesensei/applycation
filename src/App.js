@@ -17,7 +17,7 @@ class App extends Component {
               <div className="col-md-2 side">
                 <Left />
               </div>
-              <div className="col-md-10 main border-left">
+              <div className="col-md-10 main border">
                 <Switch>
                   <Route path="/login" render={(props) => <LoginForm {...props} />} />
                   <Route path="/job/apply" component={ApplicationForm} />
