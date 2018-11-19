@@ -37,7 +37,7 @@ class JobList extends Component {
       );
     });
     return (
-      <div>
+      <div className="p-2">
         <h1>Jobs</h1>
         <ListGroup>{jobs}</ListGroup>
       </div>
