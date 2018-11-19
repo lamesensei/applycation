@@ -1,7 +1,7 @@
 import React from 'react';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 
-class NavTab extends React.Component {
+class JobNav extends React.Component {
   render() {
     let toRender = null;
     if (this.props.currentTab === 'stages') {
@@ -51,4 +51,4 @@ class NavTab extends React.Component {
   }
 }
 
-export default NavTab;
+export default JobNav;

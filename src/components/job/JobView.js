@@ -3,9 +3,9 @@ import Job from '../functions/job';
 import { Button, UncontrolledAlert } from 'reactstrap';
 import StageForm from '../stage/StageForm';
 import StagePanel from '../stage/StagePanel';
-import NavTab from './NavTab';
+import JobNav from './JobNav';
 
-class ShowJob extends Component {
+class JobView extends Component {
   constructor(props) {
     super(props);
     this.jobId = props.match.params.id;
@@ -62,7 +62,7 @@ class ShowJob extends Component {
         ) : (
           <h1 className="tada">Loading</h1>
         )}
-        <NavTab changeTab={this.changeTab} currentTab={this.state.currentTab} />
+        <JobNav changeTab={this.changeTab} currentTab={this.state.currentTab} />
         <div>
           <Button onClick={this.toggleStageForm}>Add Stage</Button>
         </div>
@@ -85,4 +85,4 @@ class ShowJob extends Component {
   }
 }
 
-export default ShowJob;
+export default JobView;

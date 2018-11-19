@@ -1,6 +1,24 @@
 import gqlClient from './gql';
 
 const Job = {
+  list: (userId, callback) => {
+    const query = `query {
+  user(where:{id:{_eq: 1}}){
+    applications{
+      id
+      title
+      stages{
+        name
+      }
+    }
+  }
+}`;
+    gqlClient.request(query).then((data) => {
+      const { applications } = data.user[0];
+      callback(applications);
+    });
+  },
+
   create: (title, companyName, id, callback) => {
     const query = `mutation insert_application {
   insert_application(
@@ -37,6 +55,7 @@ const Job = {
       callback(id);
     });
   },
+
   find: (id, callback) => {
     const query = `{
   application(where: {id: {_eq: ${id}}}){
@@ -54,6 +73,7 @@ const Job = {
       return callback(result);
     });
   },
+
   stages: (id, callback) => {
     const query = `{
     application(where: {id: {_eq: ${id}}}){
