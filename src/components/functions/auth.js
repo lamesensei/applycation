@@ -18,14 +18,12 @@ const Auth = {
     }
 }`;
 
-    gqlClient.request(login).then((data) => {
-      if (data.user.length > 0) {
-        const { name, password, id } = data.user[0];
-        if (name === user && password === pass) return callback('true', name, id);
-        return callback('false');
-      }
-      return callback('false');
-    });
+    return gqlClient.request(login);
+
+    // if (data.user.length > 0) {
+    //   const { name, password, id } = data.user[0];
+    //   if (name === user && password === pass) return callback(name, id);
+    // }
   }
 };
 

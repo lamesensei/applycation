@@ -13,24 +13,33 @@ class AuthProvider extends Component {
   }
 
   login = (user, pass) => {
-    new Promise((resolve) => resolve(Auth.authenticate(user, pass, this.success)));
+    Auth.authenticate(user, pass).then((data) => {
+      if (data.user.length > 0) {
+        if (data.user[0].name === user && data.user[0].password === pass) {
+          this.success(data.user[0].name, data.user[0].id);
+          return true;
+        }
+      }
+      return false;
+    });
   };
 
-  success = (status, who, id) => {
-    localStorage.setItem('who', who);
-    localStorage.setItem('id', id);
-    this.setState({
-      isAuth: status,
-      who: who,
-      id: id
-    });
+  success = (who, id) => {
+    if (who) {
+      localStorage.setItem('who', who);
+      localStorage.setItem('id', id);
+      this.setState({
+        who: who,
+        id: id
+      });
+    }
   };
 
   logout = () => {
     localStorage.removeItem('who');
     localStorage.removeItem('id');
     this.setState({
-      isAuth: null,
+      id: null,
       who: null
     });
   };

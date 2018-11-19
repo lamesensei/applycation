@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { AuthConsumer } from '../auth/AuthContext';
+import { InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
 
 class Login extends Component {
   constructor() {
@@ -18,46 +19,60 @@ class Login extends Component {
     this.setState({ password: event.target.value });
   };
 
-  //   redirectHandler = () => {
-  //     if (localStorage.isAuth !== 'false') {
-  //       console.log('rerouting', localStorage.isAuth);
-  //       this.props.history.push('/');
-  //     }
-  //   };
+  redirectHandler = (who) => {
+    if (who) {
+      this.props.history.push('/');
+    }
+  };
+
+  componentDidMount = () => {
+    this.redirectHandler(localStorage.who);
+  };
 
   render() {
     return (
-      <AuthConsumer>
-        {({ login }) => {
-          return (
-            <form
-              onSubmit={async (event) => {
-                event.preventDefault();
-                try {
-                  await login(this.state.username, this.state.password);
-                  //this.redirectHandler();
-                } catch (err) {
-                  console.log(err);
-                }
-              }}
-            >
-              <input
-                onChange={this.usernameHandler}
-                type="text"
-                value={this.state.username}
-                required
-              />
-              <input
-                onChange={this.passwordHandler}
-                type="password"
-                value={this.state.password}
-                required
-              />
-              <button type="submit">Login</button>
-            </form>
-          );
-        }}
-      </AuthConsumer>
+      <div className="container m-2">
+        <AuthConsumer>
+          {({ login, who }) => {
+            return (
+              <form
+                onSubmit={async (event) => {
+                  event.preventDefault();
+                  try {
+                    (await login(this.state.username, this.state.password))
+                      ? this.redirectHandler(who)
+                      : console.log('fail');
+                  } catch (err) {
+                    console.log(err);
+                  }
+                }}
+              >
+                <InputGroup>
+                  <InputGroupAddon addonType="prepend">@</InputGroupAddon>
+                  <Input
+                    onChange={this.usernameHandler}
+                    type="text"
+                    value={this.state.username}
+                    required
+                  />
+                </InputGroup>
+                <br />
+                <InputGroup>
+                  <InputGroupAddon addonType="prepend">#</InputGroupAddon>
+                  <Input
+                    onChange={this.passwordHandler}
+                    type="password"
+                    value={this.state.password}
+                    required
+                  />
+                </InputGroup>
+                <br />
+                <Button type="submit">Login</Button>
+              </form>
+            );
+          }}
+        </AuthConsumer>
+      </div>
     );
   }
 }

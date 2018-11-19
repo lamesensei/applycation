@@ -36,8 +36,8 @@ export default class Header extends Component {
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <AuthConsumer>
-              {({ isAuth, logout, who }) =>
-                isAuth === 'true' ? (
+              {({ logout, who }) =>
+                who ? (
                   <UncontrolledDropdown nav inNavbar>
                     <DropdownToggle nav caret>
                       {who}

@@ -45,8 +45,10 @@ class JobView extends Component {
   };
 
   componentDidMount = () => {
-    Job.find(this.jobId, this.updateTitle);
-    Job.stages(this.jobId, this.populateStages);
+    if (localStorage.id) {
+      Job.find(this.jobId, this.updateTitle);
+      Job.stages(this.jobId, this.populateStages);
+    }
   };
 
   render() {
