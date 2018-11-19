@@ -7,9 +7,8 @@ class AuthProvider extends Component {
   constructor() {
     super();
     this.state = {
-      isAuth: localStorage.isAuth || 'false',
-      who: localStorage.who || '',
-      id: localStorage.id || ''
+      who: localStorage.who,
+      id: localStorage.id
     };
   }
 
@@ -18,7 +17,6 @@ class AuthProvider extends Component {
   };
 
   success = (status, who, id) => {
-    localStorage.setItem('isAuth', status);
     localStorage.setItem('who', who);
     localStorage.setItem('id', id);
     this.setState({
@@ -29,8 +27,8 @@ class AuthProvider extends Component {
   };
 
   logout = () => {
-    localStorage.removeItem('isAuth');
     localStorage.removeItem('who');
+    localStorage.removeItem('id');
     this.setState({
       isAuth: null,
       who: null
@@ -42,7 +40,6 @@ class AuthProvider extends Component {
     return (
       <AuthContext.Provider
         value={{
-          isAuth: this.state.isAuth,
           who: this.state.who,
           id: this.state.id,
           login: this.login,
@@ -55,17 +52,5 @@ class AuthProvider extends Component {
   }
 }
 const AuthConsumer = AuthContext.Consumer;
-
-// const AuthHOC = (Component) => {
-//   return (props) => {
-//     return (
-//       <AuthContext.Consumers>
-//         {(context) => {
-//           return <Component {...props} context={context} />;
-//         }}
-//       </AuthContext.Consumers>
-//     );
-//   };
-// };
 
 export { AuthProvider, AuthConsumer };

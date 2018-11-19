@@ -28,7 +28,7 @@ class Login extends Component {
   render() {
     return (
       <AuthConsumer>
-        {({ login, isAuth }) => {
+        {({ login }) => {
           return (
             <form
               onSubmit={async (event) => {
