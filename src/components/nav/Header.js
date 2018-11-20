@@ -13,6 +13,8 @@ import {
   DropdownItem
 } from 'reactstrap';
 
+import galogo from '../../media/galogo.png';
+
 export default class Header extends Component {
   constructor(props) {
     super(props);
@@ -36,7 +38,7 @@ export default class Header extends Component {
     return (
       <Navbar dark color="dark" expand="md">
         <NavbarBrand style={brandStyle} href="/">
-          <i className="fas fa-cog text-danger" /> GENERAL APPLYCATION
+          <img src={galogo} width="30" height="30" alt="logo" /> GENERAL APPLYCATION
         </NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
