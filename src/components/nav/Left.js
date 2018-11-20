@@ -5,7 +5,7 @@ import { Nav } from 'reactstrap';
 class Left extends Component {
   render() {
     return (
-      <Nav vertical fill>
+      <Nav vertical>
         <Link className="nav-link nav-item text-white" to="/profile" data-toggle="pills">
           <strong>Profile</strong>
         </Link>

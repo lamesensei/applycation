@@ -17,13 +17,16 @@ library.add(faSpinner);
 
 class App extends Component {
   render() {
+    const navBg = {
+      background: 'black'
+    };
     return (
       <AuthProvider>
         <div className="App h-100">
           <Header />
           <div className="container-fluid h-100">
             <div className="row h-100">
-              <div className="col-md-2 p-3 side bg-dark">
+              <div className="col-md-2 p-3 side" style={navBg}>
                 <Left />
               </div>
               <div className="col-md-10 p-3 main border">

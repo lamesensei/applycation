@@ -31,12 +31,15 @@ export default class Header extends Component {
   }
 
   render() {
+    const navBg = {
+      background: 'black'
+    };
     const brandStyle = {
       fontFamily: ['Changa', 'sans-serif'],
       fontWeight: 700
     };
     return (
-      <Navbar dark color="dark" expand="md">
+      <Navbar dark style={navBg} expand="md">
         <NavbarBrand style={brandStyle} href="/">
           <img src={galogo} width="30" height="30" alt="logo" /> GENERAL APPLYCATION
         </NavbarBrand>
