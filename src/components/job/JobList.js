@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Job from '../functions/job';
-import { UncontrolledAlert, Button, ButtonGroup, ListGroup, ListGroupItem } from 'reactstrap';
+import { UncontrolledAlert, ListGroup } from 'reactstrap';
 import JobItem from './JobItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
