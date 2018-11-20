@@ -22,6 +22,22 @@ const User = {
     gqlClient.request(query).then((data) => {
       callback(data.insert_user.returning[0].name);
     });
+  },
+
+  find: (id, callback) => {
+    const query = `{
+  user(where: {id: {_eq: ${id}}}) {
+    first_name
+    last_name
+    email
+    tel
+  }
+}
+`;
+
+    gqlClient.request(query).then((data) => {
+      callback(data.user[0]);
+    });
   }
 };
 
