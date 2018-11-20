@@ -55,10 +55,12 @@ const Stage = {
 
   destroy: (id, callback) => {
     const query = `mutation delete_stage {
-  delete_stage(where: {id: {_eq: ${id}}}) {
+  delete_task(where: {stage_id: {_eq: ${id}}}) {
     affected_rows
-    returning {
-      id
+  }
+  delete_stage(where:{id:{_eq: ${id}}}){
+    affected_rows
+    returning{
       name
     }
   }

@@ -27,7 +27,6 @@ class StageForm extends Component {
   submitHandler = (event) => {
     event.preventDefault();
     const convertedTime = moment(this.state.due, moment.HTML5_FMT.DATETIME_LOCAL).toISOString();
-    console.log(convertedTime);
     Stage.create(
       this.state.name,
       this.state.notes,
@@ -38,7 +37,6 @@ class StageForm extends Component {
   };
 
   render() {
-    console.log();
     return (
       <div className="m-2">
         <Form onSubmit={this.submitHandler}>

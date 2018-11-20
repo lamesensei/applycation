@@ -24,7 +24,6 @@ import moment from 'moment';
 class StagePanel extends Component {
   constructor(props) {
     super(props);
-    console.log(props.due);
     this.dueWhen = moment(props.due, moment.ISO_8601).fromNow();
     this.dueDate = moment(props.due, moment.ISO_8601).format('Do MMM YYYY, HHmm') + 'H';
     this.state = {
@@ -34,8 +33,7 @@ class StagePanel extends Component {
   }
 
   populateTasks = (data) => {
-    console.log(data);
-    this.setState({ tasks: [...data] });
+    this.setState({ tasks: [...data], task: '' });
   };
 
   updateTasks = (data) => {
@@ -59,7 +57,6 @@ class StagePanel extends Component {
     const target = event.target;
     const value = target.value;
     const name = target.name;
-    console.log(name, value);
     this.setState({
       [name]: value
     });

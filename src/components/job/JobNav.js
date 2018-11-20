@@ -11,10 +11,10 @@ class JobNav extends React.Component {
             <NavLink active>Stages</NavLink>
           </NavItem>
           <NavItem name="poc" onClick={this.props.changeTab}>
-            <NavLink href="#">POC</NavLink>
+            <NavLink>POC</NavLink>
           </NavItem>
           <NavItem name="others" onClick={this.props.changeTab}>
-            <NavLink href="#">Others</NavLink>
+            <NavLink>Others</NavLink>
           </NavItem>
         </Nav>
       );
@@ -28,7 +28,7 @@ class JobNav extends React.Component {
             <NavLink active>POC</NavLink>
           </NavItem>
           <NavItem name="others" onClick={this.props.changeTab}>
-            <NavLink href="#">Others</NavLink>
+            <NavLink>Others</NavLink>
           </NavItem>
         </Nav>
       );
