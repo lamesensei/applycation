@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { AuthConsumer } from '../auth/AuthContext';
 import { InputGroup, InputGroupAddon, InputGroupText, Button, Input } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 class Login extends Component {
   constructor() {
@@ -20,9 +21,7 @@ class Login extends Component {
   };
 
   redirectHandler = (who) => {
-    if (who) {
-      this.props.history.push('/');
-    }
+    if (who) this.props.history.push('/jobs');
   };
 
   componentDidMount = () => {
@@ -41,9 +40,8 @@ class Login extends Component {
                 onSubmit={async (event) => {
                   event.preventDefault();
                   try {
-                    (await login(this.state.username, this.state.password))
-                      ? this.redirectHandler(who)
-                      : console.log('fail');
+                    await login(this.state.username, this.state.password);
+                    this.props.history.push('/jobs');
                   } catch (err) {
                     console.log(err);
                   }
@@ -52,7 +50,7 @@ class Login extends Component {
                 <InputGroup>
                   <InputGroupAddon addonType="prepend">
                     <InputGroupText>
-                      <i class="fas fa-user" />
+                      <i className="fas fa-user" />
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
@@ -67,7 +65,7 @@ class Login extends Component {
                 <InputGroup>
                   <InputGroupAddon addonType="prepend">
                     <InputGroupText>
-                      <i class="fas fa-key" />
+                      <i className="fas fa-key" />
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
@@ -80,8 +78,10 @@ class Login extends Component {
                 </InputGroup>
                 <br />
                 <Button color="danger" type="submit">
-                  <i class="fas fa-sign-in-alt" /> Submit
+                  <i className="fas fa-sign-in-alt" /> Submit
                 </Button>
+                <br />
+                <Link to="/signup">No account? Sign up here.</Link>
               </form>
             );
           }}

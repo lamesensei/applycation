@@ -13,14 +13,16 @@ class AuthProvider extends Component {
   }
 
   login = (user, pass) => {
-    Auth.authenticate(user, pass).then((data) => {
-      if (data.user.length > 0) {
-        if (data.user[0].name === user && data.user[0].password === pass) {
-          this.success(data.user[0].name, data.user[0].id);
-          return true;
+    return new Promise((resolve, reject) => {
+      Auth.authenticate(user, pass).then((data) => {
+        if (data.user.length > 0) {
+          if (data.user[0].name === user && data.user[0].password === pass) {
+            this.success(data.user[0].name, data.user[0].id);
+            resolve(true);
+          }
         }
-      }
-      return false;
+        reject(Error('loginfail'));
+      });
     });
   };
 
