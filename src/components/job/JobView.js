@@ -58,18 +58,21 @@ class JobView extends Component {
   };
 
   render() {
-    const stages = this.state.stages.map((item) => {
-      return (
-        <StagePanel
-          key={item.id}
-          id={item.id}
-          name={item.name}
-          due={item.due}
-          notes={item.value}
-          deleteHandler={this.deleteHandler}
-        />
-      );
-    });
+    const stages = this.state.stages
+      .slice(0)
+      .reverse()
+      .map((item) => {
+        return (
+          <StagePanel
+            key={item.id}
+            id={item.id}
+            name={item.name}
+            due={item.due}
+            notes={item.value}
+            deleteHandler={this.deleteHandler}
+          />
+        );
+      });
     return (
       <div>
         {this.state.title ? (
@@ -81,7 +84,7 @@ class JobView extends Component {
         )}
         <JobNav changeTab={this.changeTab} currentTab={this.state.currentTab} />
         <div className="mt-2 mb-2">
-          <Button color="primary" size="sm" onClick={this.toggleStageForm}>
+          <Button size="sm" onClick={this.toggleStageForm}>
             Add Stage
           </Button>
         </div>

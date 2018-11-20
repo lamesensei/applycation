@@ -64,7 +64,9 @@ class StagePanel extends Component {
 
   render() {
     const taskItems = this.state.tasks.map((item) => {
-      return <TaskItem key={item.id} value={item.value} />;
+      return (
+        <TaskItem key={item.id} id={item.id} value={item.value} updateTasks={this.updateTasks} />
+      );
     });
     return (
       <Card className="mb-2">
@@ -76,14 +78,14 @@ class StagePanel extends Component {
         /> */}
         <CardBody>
           <CardTitle>{this.props.name}</CardTitle>
-          <CardSubtitle>Due {this.dueWhen}</CardSubtitle>
+          <CardSubtitle>{this.dueDate}</CardSubtitle>
           <CardText>{this.props.notes}</CardText>
         </CardBody>
         <ListGroup flush>{taskItems}</ListGroup>
         <CardBody>
           <Form onSubmit={this.clickAdd}>
             <FormGroup>
-              <InputGroup>
+              <InputGroup size="sm">
                 <InputGroupAddon addonType="prepend">Add Task</InputGroupAddon>
                 <Input
                   type="text"
@@ -104,7 +106,7 @@ class StagePanel extends Component {
           </Form>
         </CardBody>
         <CardFooter className="text-muted">
-          {this.dueDate}
+          <small>Due {this.dueWhen}</small>
           <Button className="float-right" size="sm" color="danger" onClick={this.clickDelete}>
             <i className="fas fa-trash-alt" />
           </Button>
