@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Job from '../functions/job';
-import { Button, UncontrolledAlert, Collapse } from 'reactstrap';
+import { Button, UncontrolledAlert } from 'reactstrap';
 import StageForm from '../stage/StageForm';
 import StagePanel from '../stage/StagePanel';
 import JobNav from './JobNav';
@@ -85,9 +85,9 @@ class JobView extends Component {
             Add Stage
           </Button>
         </div>
-        <Collapse isOpen={this.state.showStageForm}>
+        {this.state.showStageForm && (
           <StageForm jobId={this.props.match.params.id} toggleOff={this.toggleStageForm} />
-        </Collapse>
+        )}
         <div>
           {this.state.stageCreated && (
             <UncontrolledAlert color="success">

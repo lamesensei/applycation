@@ -8,11 +8,17 @@ import {
   CardSubtitle,
   CardFooter,
   Button,
-  ListGroup
+  ListGroup,
+  InputGroupAddon,
+  InputGroup,
+  Input,
+  Form,
+  FormGroup
 } from 'reactstrap';
 
 import Stage from '../functions/stage';
 import TaskItem from '../task/TaskItem';
+import Task from '../functions/task';
 import moment from 'moment';
 
 class StagePanel extends Component {
@@ -21,10 +27,30 @@ class StagePanel extends Component {
     console.log(props.due);
     this.dueWhen = moment(props.due, moment.ISO_8601).fromNow();
     this.dueDate = moment(props.due, moment.ISO_8601).format('Do MMM YYYY, HHmm') + 'H';
+    this.state = {
+      task: ''
+    };
   }
-  clickHandler = () => {
+
+  clickAdd = (event) => {
+    event.preventDefault();
+    Task.create(this.state.task, this.props.id, console.log);
+  };
+
+  clickDelete = () => {
     Stage.destroy(this.props.id, this.props.deleteHandler);
   };
+
+  changeHandler = (event) => {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    console.log(name, value);
+    this.setState({
+      [name]: value
+    });
+  };
+
   render() {
     return (
       <Card className="mb-2">
@@ -42,9 +68,32 @@ class StagePanel extends Component {
         <ListGroup flush>
           <TaskItem />
         </ListGroup>
+        <CardBody>
+          <Form onSubmit={this.clickAdd}>
+            <FormGroup>
+              <InputGroup>
+                <InputGroupAddon addonType="prepend">Add Task</InputGroupAddon>
+                <Input
+                  type="text"
+                  name="task"
+                  id="task"
+                  placeholder="Eg. prepare for ..."
+                  value={this.state.input}
+                  required
+                  onChange={this.changeHandler}
+                />
+                <InputGroupAddon addonType="append">
+                  <Button color="success">
+                    <i className="fas fa-plus" />
+                  </Button>
+                </InputGroupAddon>
+              </InputGroup>
+            </FormGroup>
+          </Form>
+        </CardBody>
         <CardFooter className="text-muted">
           {this.dueDate}
-          <Button className="float-right" size="sm" color="danger" onClick={this.clickHandler}>
+          <Button className="float-right" size="sm" color="danger" onClick={this.clickDelete}>
             <i className="fas fa-trash-alt" />
           </Button>
         </CardFooter>
