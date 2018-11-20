@@ -1,13 +1,14 @@
 import gqlClient from './gql';
 
 const Stage = {
-  create: (name, value, appId, callback) => {
+  create: (name, value, dateTime, appId, callback) => {
     const query = `mutation insert_stage {
   insert_stage(
     objects: [
       {
         name: "${name}",
         value: "${value}",
+        due: "${dateTime}",
         application_id: "${appId}"
       }
     ]

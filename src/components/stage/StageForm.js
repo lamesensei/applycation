@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Input, InputGroup, InputGroupAddon } from 'reactstrap';
+import moment from 'moment';
+
 import Stage from '../functions/stage';
 
 class StageForm extends Component {
   constructor(props) {
     super(props);
+    this.now = moment().format(moment.HTML5_FMT.DATETIME_LOCAL);
     this.state = {
       name: '',
-      notes: ''
+      notes: '',
+      due: this.now
     };
   }
 
@@ -22,10 +26,19 @@ class StageForm extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-    Stage.create(this.state.name, this.state.notes, this.props.jobId, this.props.toggleOff);
+    const convertedTime = moment(this.state.due, moment.HTML5_FMT.DATETIME_LOCAL).toISOString();
+    console.log(convertedTime);
+    Stage.create(
+      this.state.name,
+      this.state.notes,
+      convertedTime,
+      this.props.jobId,
+      this.props.toggleOff
+    );
   };
 
   render() {
+    console.log();
     return (
       <div className="m-2">
         <Form onSubmit={this.submitHandler}>
@@ -52,6 +65,18 @@ class StageForm extends Component {
                 id="notes"
                 placeholder="Enter notes"
                 value={this.state.notes}
+                onChange={this.changeHandler}
+              />
+            </InputGroup>
+          </FormGroup>
+          <FormGroup>
+            <InputGroup>
+              <InputGroupAddon addonType="prepend">Due </InputGroupAddon>
+              <Input
+                type="datetime-local"
+                name="due"
+                id="due"
+                value={this.state.due}
                 onChange={this.changeHandler}
               />
             </InputGroup>
