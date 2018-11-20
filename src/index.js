@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css';
 import './index.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'typeface-changa';
 import App from './App';
 // import * as serviceWorker from './serviceWorker';
 

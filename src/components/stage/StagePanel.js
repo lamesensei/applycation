@@ -8,7 +8,7 @@ class StagePanel extends Component {
   };
   render() {
     return (
-      <div className="d-flex justify-content-between align-items-center border p-2">
+      <div className="d-flex justify-content-between align-items-center border p-2 mb-2">
         <h3>{this.props.name}</h3>
         <span>{this.props.notes}</span>
         <Button size="sm" color="danger" onClick={this.clickHandler}>

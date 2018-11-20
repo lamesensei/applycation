@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AuthConsumer } from '../auth/AuthContext';
-import { InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
+import { InputGroup, InputGroupAddon, InputGroupText, Button, Input } from 'reactstrap';
 
 class Login extends Component {
   constructor() {
@@ -31,7 +31,9 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="container m-2">
+      <div className="container">
+        <h3>Log In</h3>
+        <br />
         <AuthConsumer>
           {({ login, who }) => {
             return (
@@ -48,26 +50,38 @@ class Login extends Component {
                 }}
               >
                 <InputGroup>
-                  <InputGroupAddon addonType="prepend">@</InputGroupAddon>
+                  <InputGroupAddon addonType="prepend">
+                    <InputGroupText>
+                      <i class="fas fa-user" />
+                    </InputGroupText>
+                  </InputGroupAddon>
                   <Input
                     onChange={this.usernameHandler}
                     type="text"
                     value={this.state.username}
+                    placeholder="Username"
                     required
                   />
                 </InputGroup>
                 <br />
                 <InputGroup>
-                  <InputGroupAddon addonType="prepend">#</InputGroupAddon>
+                  <InputGroupAddon addonType="prepend">
+                    <InputGroupText>
+                      <i class="fas fa-key" />
+                    </InputGroupText>
+                  </InputGroupAddon>
                   <Input
                     onChange={this.passwordHandler}
                     type="password"
                     value={this.state.password}
+                    placeholder="Password"
                     required
                   />
                 </InputGroup>
                 <br />
-                <Button type="submit">Login</Button>
+                <Button color="danger" type="submit">
+                  <i class="fas fa-sign-in-alt" /> Submit
+                </Button>
               </form>
             );
           }}

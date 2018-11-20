@@ -29,9 +29,15 @@ export default class Header extends Component {
   }
 
   render() {
+    const brandStyle = {
+      fontFamily: ['Changa', 'sans-serif'],
+      fontWeight: 700
+    };
     return (
-      <Navbar light expand="md">
-        <NavbarBrand href="/">Applycation</NavbarBrand>
+      <Navbar dark color="dark" expand="md">
+        <NavbarBrand style={brandStyle} href="/">
+          <i className="fas fa-cog text-danger" /> GENERAL APPLYCATION
+        </NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
