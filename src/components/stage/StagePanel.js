@@ -29,7 +29,7 @@ class StagePanel extends Component {
         /> */}
         <CardBody>
           <CardTitle>{this.props.name}</CardTitle>
-          <CardSubtitle>due date here</CardSubtitle>
+          <CardSubtitle>Due {this.props.due}</CardSubtitle>
           <CardText>{this.props.notes}</CardText>
         </CardBody>
         <ListGroup flush>

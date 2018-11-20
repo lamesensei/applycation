@@ -81,6 +81,7 @@ const Job = {
                 id
                 name
                 value
+                due
                 }
             }
      }`;
