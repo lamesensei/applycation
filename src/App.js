@@ -21,9 +21,9 @@ class App extends Component {
       <AuthProvider>
         <div className="App h-100">
           <Header />
-          <div className="container-fluid h-100 p-4">
-            <div className="row">
-              <div className="col-md-2 p-3 side">
+          <div className="container-fluid h-100">
+            <div className="row h-100">
+              <div className="col-md-2 p-3 side bg-dark">
                 <Left />
               </div>
               <div className="col-md-10 p-3 main border">

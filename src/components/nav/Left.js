@@ -6,11 +6,14 @@ class Left extends Component {
   render() {
     return (
       <Nav vertical fill>
-        <Link className="nav-link nav-item" to="/job/apply" data-toggle="pills">
-          New Job
+        <Link className="nav-link nav-item text-white" to="/profile" data-toggle="pills">
+          <strong>Profile</strong>
         </Link>
-        <Link className="nav-link nav-item" to="/jobs" data-toggle="pills">
-          List Jobs
+        <Link className="nav-link nav-item text-white" to="/job/apply" data-toggle="pills">
+          <strong>New Job</strong>
+        </Link>
+        <Link className="nav-link nav-item text-white" to="/jobs" data-toggle="pills">
+          <strong>List Jobs</strong>
         </Link>
       </Nav>
     );
