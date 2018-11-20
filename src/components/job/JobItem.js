@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, ButtonGroup, ListGroup, ListGroupItem } from 'reactstrap';
+import { Button, ButtonGroup, ListGroupItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Job from '../functions/job';
 

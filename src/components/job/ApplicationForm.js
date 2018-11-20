@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, InputGroup, InputGroupAddon } from 'reactstrap';
+import { Button, Form, FormGroup, Input, InputGroup, InputGroupAddon } from 'reactstrap';
 import Job from '../functions/job';
 
 class ApplicationForm extends Component {
