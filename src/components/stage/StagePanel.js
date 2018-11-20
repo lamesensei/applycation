@@ -13,8 +13,15 @@ import {
 
 import Stage from '../functions/stage';
 import TaskItem from '../task/TaskItem';
+import moment from 'moment';
 
 class StagePanel extends Component {
+  constructor(props) {
+    super(props);
+    console.log(props.due);
+    this.dueWhen = moment(props.due, moment.ISO_8601).fromNow();
+    this.dueDate = moment(props.due, moment.ISO_8601).format('Do MMM YYYY, HHmm') + 'H';
+  }
   clickHandler = () => {
     Stage.destroy(this.props.id, this.props.deleteHandler);
   };
@@ -29,13 +36,14 @@ class StagePanel extends Component {
         /> */}
         <CardBody>
           <CardTitle>{this.props.name}</CardTitle>
-          <CardSubtitle>Due {this.props.due}</CardSubtitle>
+          <CardSubtitle>Due {this.dueWhen}</CardSubtitle>
           <CardText>{this.props.notes}</CardText>
         </CardBody>
         <ListGroup flush>
           <TaskItem />
         </ListGroup>
         <CardFooter className="text-muted">
+          {this.dueDate}
           <Button className="float-right" size="sm" color="danger" onClick={this.clickHandler}>
             <i className="fas fa-trash-alt" />
           </Button>

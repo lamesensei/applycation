@@ -4,7 +4,6 @@ import { Button, UncontrolledAlert, Collapse } from 'reactstrap';
 import StageForm from '../stage/StageForm';
 import StagePanel from '../stage/StagePanel';
 import JobNav from './JobNav';
-import moment, { ISO_8601 } from 'moment';
 
 class JobView extends Component {
   constructor(props) {
@@ -65,7 +64,7 @@ class JobView extends Component {
           key={item.id}
           id={item.id}
           name={item.name}
-          due={moment(item.due, ISO_8601).fromNow()}
+          due={item.due}
           notes={item.value}
           deleteHandler={this.deleteHandler}
         />
