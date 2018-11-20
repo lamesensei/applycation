@@ -28,17 +28,31 @@ class StagePanel extends Component {
     this.dueWhen = moment(props.due, moment.ISO_8601).fromNow();
     this.dueDate = moment(props.due, moment.ISO_8601).format('Do MMM YYYY, HHmm') + 'H';
     this.state = {
-      task: ''
+      task: '',
+      tasks: []
     };
   }
 
+  populateTasks = (data) => {
+    console.log(data);
+    this.setState({ tasks: [...data] });
+  };
+
+  updateTasks = (data) => {
+    Stage.tasks(this.props.id, this.populateTasks);
+  };
+
   clickAdd = (event) => {
     event.preventDefault();
-    Task.create(this.state.task, this.props.id, console.log);
+    Task.create(this.state.task, this.props.id, this.updateTasks);
   };
 
   clickDelete = () => {
     Stage.destroy(this.props.id, this.props.deleteHandler);
+  };
+
+  componentDidMount = () => {
+    Stage.tasks(this.props.id, this.populateTasks);
   };
 
   changeHandler = (event) => {
@@ -52,6 +66,9 @@ class StagePanel extends Component {
   };
 
   render() {
+    const taskItems = this.state.tasks.map((item) => {
+      return <TaskItem key={item.id} value={item.value} />;
+    });
     return (
       <Card className="mb-2">
         {/* <CardImg
@@ -65,9 +82,7 @@ class StagePanel extends Component {
           <CardSubtitle>Due {this.dueWhen}</CardSubtitle>
           <CardText>{this.props.notes}</CardText>
         </CardBody>
-        <ListGroup flush>
-          <TaskItem />
-        </ListGroup>
+        <ListGroup flush>{taskItems}</ListGroup>
         <CardBody>
           <Form onSubmit={this.clickAdd}>
             <FormGroup>

@@ -68,6 +68,21 @@ const Stage = {
       const { name } = data.delete_stage.returning[0];
       return callback(name);
     });
+  },
+
+  tasks: (stageId, callback) => {
+    const query = `{
+  stage(where:{id:{_eq: ${stageId}}}){
+    tasks{
+      id
+      value
+    }
+  }
+}`;
+
+    gqlClient.request(query).then((data) => {
+      return callback(data.stage[0].tasks);
+    });
   }
 };
 

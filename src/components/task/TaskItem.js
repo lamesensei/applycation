@@ -3,7 +3,7 @@ import { ListGroupItem } from 'reactstrap';
 
 class TaskItem extends Component {
   render() {
-    return <ListGroupItem>test</ListGroupItem>;
+    return <ListGroupItem>{this.props.value}</ListGroupItem>;
   }
 }
 
