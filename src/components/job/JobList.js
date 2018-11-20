@@ -15,6 +15,7 @@ class JobList extends Component {
 
   populateJobs = (data) => {
     if (data.length >= 1) this.setState({ jobs: [...data] });
+    else this.setState({ jobs: [] });
   };
 
   deleteHandler = (name) => {
