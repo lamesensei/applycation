@@ -8,6 +8,12 @@ import SignupForm from './components/user/SignupForm';
 import JobView from './components/job/JobView';
 import JobList from './components/job/JobList';
 import { AuthProvider } from './components/auth/AuthContext';
+import { library } from '@fortawesome/fontawesome-svg-core';
+// import { fab } from '@fortawesome/free-brands-svg-icons';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faSpinner);
+
 class App extends Component {
   render() {
     return (

@@ -34,7 +34,7 @@ class Login extends Component {
         <h3>Log In</h3>
         <br />
         <AuthConsumer>
-          {({ login, who }) => {
+          {({ login }) => {
             return (
               <form
                 onSubmit={async (event) => {

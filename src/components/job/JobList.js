@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Job from '../functions/job';
 import { UncontrolledAlert, Button, ButtonGroup, ListGroup, ListGroupItem } from 'reactstrap';
 import JobItem from './JobItem';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class JobList extends Component {
   constructor() {
@@ -26,7 +27,6 @@ class JobList extends Component {
   };
 
   render() {
-    console.log(this.state.jobs);
     const jobs = this.state.jobs.map((item) => {
       return (
         <JobItem
@@ -45,7 +45,14 @@ class JobList extends Component {
         {this.state.jobDeleted && (
           <UncontrolledAlert color="danger">{this.state.jobDeleted} deleted!</UncontrolledAlert>
         )}
-        <ListGroup>{jobs}</ListGroup>
+        <ListGroup>
+          {this.state.jobs.length === 0 && (
+            <h3 className="text-center">
+              <FontAwesomeIcon icon="spinner" spin />
+            </h3>
+          )}
+          {jobs}
+        </ListGroup>
       </div>
     );
   }

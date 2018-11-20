@@ -4,6 +4,7 @@ import { Button, UncontrolledAlert } from 'reactstrap';
 import StageForm from '../stage/StageForm';
 import StagePanel from '../stage/StagePanel';
 import JobNav from './JobNav';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class JobView extends Component {
   constructor(props) {
@@ -80,7 +81,9 @@ class JobView extends Component {
             {this.state.title}, <small>{this.state.company.name}</small>
           </h1>
         ) : (
-          <h1 className="tada">Loading</h1>
+          <h1 className="tada">
+            <FontAwesomeIcon icon="spinner" spin />
+          </h1>
         )}
         <JobNav changeTab={this.changeTab} currentTab={this.state.currentTab} />
         <div className="mt-2 mb-2">
