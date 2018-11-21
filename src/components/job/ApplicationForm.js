@@ -33,7 +33,7 @@ class ApplicationForm extends Component {
   };
 
   componentDidMount = () => {
-    if (!localStorage.id) this.props.history.push('/');
+    if (!localStorage.id) this.props.history.push('/login');
   };
   render() {
     return (

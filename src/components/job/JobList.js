@@ -24,7 +24,9 @@ class JobList extends Component {
   };
 
   componentDidMount = () => {
-    localStorage.id ? Job.list(localStorage.id, this.populateJobs) : this.props.history.push('/');
+    localStorage.id
+      ? Job.list(localStorage.id, this.populateJobs)
+      : this.props.history.push('/login');
   };
 
   render() {
