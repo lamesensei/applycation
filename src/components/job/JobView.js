@@ -5,6 +5,7 @@ import StageForm from '../stage/StageForm';
 import StagePanel from '../stage/StagePanel';
 import JobNav from './JobNav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PocPanel from '../poc/PocPanel';
 
 class JobView extends Component {
   constructor(props) {
@@ -59,6 +60,8 @@ class JobView extends Component {
   };
 
   render() {
+    let toRender = null;
+
     const stages = this.state.stages
       .slice(0)
       .reverse()
@@ -74,18 +77,9 @@ class JobView extends Component {
           />
         );
       });
-    return (
+
+    const stageContainer = (
       <div>
-        {this.state.title ? (
-          <h1 className="tada">
-            {this.state.title}, <small>{this.state.company.name}</small>
-          </h1>
-        ) : (
-          <h1 className="tada">
-            <FontAwesomeIcon icon="spinner" spin />
-          </h1>
-        )}
-        <JobNav changeTab={this.changeTab} currentTab={this.state.currentTab} />
         <div className="mt-2 mb-2">
           <Button size="sm" onClick={this.toggleStageForm}>
             Add Stage
@@ -104,7 +98,34 @@ class JobView extends Component {
             <UncontrolledAlert color="danger">{this.state.stageDeleted} deleted!</UncontrolledAlert>
           )}
         </div>
-        <div>{stages}</div>
+        {stages}
+      </div>
+    );
+
+    const pocs = <PocPanel />;
+    switch (this.state.currentTab) {
+      case 'stages':
+        toRender = stageContainer;
+        break;
+      case 'poc':
+        toRender = pocs;
+        break;
+      default:
+        break;
+    }
+    return (
+      <div>
+        {this.state.title ? (
+          <h1>
+            {this.state.title}, <small>{this.state.company.name}</small>
+          </h1>
+        ) : (
+          <h1>
+            <FontAwesomeIcon icon="spinner" spin />
+          </h1>
+        )}
+        <JobNav changeTab={this.changeTab} currentTab={this.state.currentTab} />
+        <div>{toRender}</div>
       </div>
     );
   }
