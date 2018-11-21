@@ -17,19 +17,28 @@ library.add(faSpinner);
 
 class App extends Component {
   render() {
-    const navBg = {
-      background: 'black'
+    const left = {
+      background: 'black',
+      height: '100%'
+    };
+
+    const main = {
+      overflow: 'scroll'
+    };
+
+    const row = {
+      paddingTop: '57px'
     };
     return (
       <AuthProvider>
         <div className="App h-100">
           <Header />
           <div className="container-fluid h-100">
-            <div className="row h-100">
-              <div className="col-md-2 p-3 side" style={navBg}>
+            <div className="row h-100" style={row}>
+              <div className="col-md-2 p-3 side" style={left}>
                 <Left />
               </div>
-              <div className="col-md-10 p-3 main border">
+              <div className="col-md-10 p-3 main border" style={main}>
                 <Switch>
                   <Route path="/login" render={(props) => <LoginForm {...props} />} />
                   <Route path="/signup" component={SignupForm} />

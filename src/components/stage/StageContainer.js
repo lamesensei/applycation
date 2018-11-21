@@ -1,30 +1,79 @@
 import React, { Component } from 'react';
 import { Button, UncontrolledAlert } from 'reactstrap';
-import StageForm from '../stage/StageForm';
+import StageForm from './StageForm';
+import StagePanel from './StagePanel';
+import Job from '../functions/job';
 
 class StageContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      jobId: props.jobId,
+      showForm: false,
+      stageCreated: undefined,
+      stageDeleted: undefined,
+      stages: []
+    };
+  }
+  populateStages = (data) => {
+    this.setState({ stages: [...data.stages] });
+  };
+
+  toggleStageForm = (data) => {
+    Job.stages(this.state.jobId, this.populateStages);
+    this.setState({
+      showStageForm: !this.state.showStageForm,
+      stageCreated: data.name
+    });
+  };
+
+  deleteHandler = (name) => {
+    this.setState({ stageDeleted: name });
+    Job.stages(this.state.jobId, this.populateStages);
+  };
+  componentDidMount = () => {
+    if (localStorage.id) {
+      Job.stages(this.state.jobId, this.populateStages);
+    }
+  };
+
   render() {
+    const stages = this.state.stages
+      .slice(0)
+      .reverse()
+      .map((item) => {
+        return (
+          <StagePanel
+            key={item.id}
+            id={item.id}
+            name={item.name}
+            due={item.due}
+            notes={item.value}
+            deleteHandler={this.deleteHandler}
+          />
+        );
+      });
     return (
       <div>
         <div className="mt-2 mb-2">
-          <Button size="sm" onClick={this.props.toggleStageForm}>
+          <Button size="sm" onClick={this.toggleStageForm}>
             Add Stage
           </Button>
         </div>
-        {this.props.showStageForm && (
-          <StageForm jobId={this.props.id} toggleOff={this.props.toggleStageForm} />
+        {this.state.showStageForm && (
+          <StageForm jobId={this.state.jobId} toggleOff={this.toggleStageForm} />
         )}
         <div>
-          {this.props.stageCreated && (
+          {this.state.stageCreated && (
             <UncontrolledAlert color="success">
-              {this.props.stageCreated} created!
+              {this.state.stageCreated} created!
             </UncontrolledAlert>
           )}
-          {this.props.stageDeleted && (
-            <UncontrolledAlert color="danger">{this.props.stageDeleted} deleted!</UncontrolledAlert>
+          {this.state.stageDeleted && (
+            <UncontrolledAlert color="danger">{this.state.stageDeleted} deleted!</UncontrolledAlert>
           )}
         </div>
-        {this.props.stages}
+        {stages}
       </div>
     );
   }

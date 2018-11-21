@@ -61,32 +61,7 @@ class JobView extends Component {
   render() {
     let toRender = null;
 
-    const stages = this.state.stages
-      .slice(0)
-      .reverse()
-      .map((item) => {
-        return (
-          <StagePanel
-            key={item.id}
-            id={item.id}
-            name={item.name}
-            due={item.due}
-            notes={item.value}
-            deleteHandler={this.deleteHandler}
-          />
-        );
-      });
-
-    const stageContainer = (
-      <StageContainer
-        toggleStageForm={this.toggleStageForm}
-        showStageForm={this.state.showStageForm}
-        id={this.props.match.params.id}
-        stageCreated={this.state.stageCreated}
-        stageDeleted={this.state.stageDeleted}
-        stages={stages}
-      />
-    );
+    const stageContainer = <StageContainer jobId={this.jobId} />;
 
     const pocs = <PocPanel />;
 
