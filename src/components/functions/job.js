@@ -112,6 +112,22 @@ const Job = {
       const { title } = data.delete_application.returning[0];
       return callback(title);
     });
+  },
+  pocs: (id, callback) => {
+    const query = `{
+  application(where:{id:{_eq: ${id}}}){
+    pocs{
+      name
+      role
+      email
+      tel
+    }
+  }
+}`;
+
+    gqlClient.request(query).then((data) => {
+      return callback(data.application[0]);
+    });
   }
 };
 

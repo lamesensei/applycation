@@ -31,6 +31,7 @@ class StageContainer extends Component {
     this.setState({ stageDeleted: name });
     Job.stages(this.state.jobId, this.populateStages);
   };
+
   componentDidMount = () => {
     if (localStorage.id) {
       Job.stages(this.state.jobId, this.populateStages);

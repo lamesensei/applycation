@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Job from '../functions/job';
-import StagePanel from '../stage/StagePanel';
 import JobNav from './JobNav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PocPanel from '../poc/PocPanel';
+import PocContainer from '../poc/PocContainer';
 import StageContainer from '../stage/StageContainer';
 
 class JobView extends Component {
@@ -63,7 +62,7 @@ class JobView extends Component {
 
     const stageContainer = <StageContainer jobId={this.jobId} />;
 
-    const pocs = <PocPanel />;
+    const pocs = <PocContainer jobId={this.jobId} />;
 
     switch (this.state.currentTab) {
       case 'stages':
