@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import Job from '../functions/job';
-import { Button, UncontrolledAlert } from 'reactstrap';
-import StageForm from '../stage/StageForm';
 import StagePanel from '../stage/StagePanel';
 import JobNav from './JobNav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PocPanel from '../poc/PocPanel';
+import StageContainer from '../stage/StageContainer';
 
 class JobView extends Component {
   constructor(props) {
@@ -79,30 +78,18 @@ class JobView extends Component {
       });
 
     const stageContainer = (
-      <div>
-        <div className="mt-2 mb-2">
-          <Button size="sm" onClick={this.toggleStageForm}>
-            Add Stage
-          </Button>
-        </div>
-        {this.state.showStageForm && (
-          <StageForm jobId={this.props.match.params.id} toggleOff={this.toggleStageForm} />
-        )}
-        <div>
-          {this.state.stageCreated && (
-            <UncontrolledAlert color="success">
-              {this.state.stageCreated} created!
-            </UncontrolledAlert>
-          )}
-          {this.state.stageDeleted && (
-            <UncontrolledAlert color="danger">{this.state.stageDeleted} deleted!</UncontrolledAlert>
-          )}
-        </div>
-        {stages}
-      </div>
+      <StageContainer
+        toggleStageForm={this.toggleStageForm}
+        showStageForm={this.state.showStageForm}
+        id={this.props.match.params.id}
+        stageCreated={this.state.stageCreated}
+        stageDeleted={this.state.stageDeleted}
+        stages={stages}
+      />
     );
 
     const pocs = <PocPanel />;
+
     switch (this.state.currentTab) {
       case 'stages':
         toRender = stageContainer;
@@ -113,6 +100,7 @@ class JobView extends Component {
       default:
         break;
     }
+
     return (
       <div>
         {this.state.title ? (
