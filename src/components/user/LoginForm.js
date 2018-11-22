@@ -30,7 +30,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="p-2">
+      <div className="p-5">
         <h3>Log In</h3>
         <br />
         <AuthConsumer>

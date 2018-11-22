@@ -37,7 +37,7 @@ class ApplicationForm extends Component {
   };
   render() {
     return (
-      <div className="p-2">
+      <div className="p-5">
         <h1>Track Applycation</h1>
         <br />
         <Form onSubmit={this.submitHandler}>

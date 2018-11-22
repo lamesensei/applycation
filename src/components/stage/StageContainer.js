@@ -56,7 +56,7 @@ class StageContainer extends Component {
         );
       });
     return (
-      <div>
+      <React.Fragment>
         <div className="mt-2 mb-2">
           <Button size="sm" color="yellow" onClick={this.toggleStageForm}>
             Add Stage
@@ -80,7 +80,7 @@ class StageContainer extends Component {
           {this.state.stages.length === 0 &&
             !this.state.showStageForm && <h3>"No interview or meeting - apply job for what!"</h3>}
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

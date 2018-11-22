@@ -67,7 +67,7 @@ class JobList extends Component {
         {this.state.jobDeleted && (
           <UncontrolledAlert color="danger">{this.state.jobDeleted} deleted!</UncontrolledAlert>
         )}
-        <div className="p-2">
+        <div className="p-5">
           <h1>
             Active Applications <Badge color="red">{this.state.jobs.length}</Badge>
           </h1>

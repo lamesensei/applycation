@@ -76,7 +76,7 @@ class JobView extends Component {
     }
 
     return (
-      <div>
+      <div className="p-5">
         {this.state.title ? (
           <h1>
             {this.state.title}, <small>{this.state.company.name}</small>

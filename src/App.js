@@ -9,6 +9,7 @@ import SignupForm from './components/user/SignupForm';
 import JobView from './components/job/JobView';
 import JobList from './components/job/JobList';
 import ProfileView from './components/user/ProfileView';
+import Landing from './components/landing/Landing';
 
 import { MDBContainer, MDBRow, MDBCol } from 'mdbreact';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -34,13 +35,14 @@ class App extends Component {
       <AuthProvider>
         <div className="App h-100">
           <Header />
-          <MDBContainer fluid className="h-100">
-            <MDBRow className="h-100" style={row}>
-              <MDBCol md="2" className="p-3 side" style={left}>
+          <MDBContainer fluid className="h-100 p-0">
+            <MDBRow className="h-100 no-gutters" style={row}>
+              <MDBCol md="2" className="side" style={left}>
                 <Left />
               </MDBCol>
-              <MDBCol md="10" className="p-3 main" style={main}>
+              <MDBCol md="10" className="main" style={main}>
                 <Switch>
+                  <Route exact path="/" component={Landing} />
                   <Route path="/login" render={(props) => <LoginForm {...props} />} />
                   <Route path="/signup" component={SignupForm} />
                   <Route path="/job/apply" component={ApplicationForm} />

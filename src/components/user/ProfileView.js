@@ -35,7 +35,7 @@ class ProfileView extends Component {
     return (
       <React.Fragment>
         {this.state.retrieved ? (
-          <div className="p-2">
+          <div className="p-5">
             <h1>
               {this.state.firstName} <small>{this.state.lastName}</small>
             </h1>
@@ -51,7 +51,7 @@ class ProfileView extends Component {
             </ListGroup>
           </div>
         ) : (
-          <div className="h-100 d-flex justify-content-center align-items-center">
+          <div className="p-5">
             <h1>
               <FontAwesomeIcon icon="spinner" spin />
             </h1>

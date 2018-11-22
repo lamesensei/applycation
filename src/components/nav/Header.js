@@ -75,7 +75,7 @@ export default class Header extends Component {
                           <u>
                             <strong>{this.state.jobless}</strong>
                           </u>{' '}
-                          day(s)
+                          days
                         </DropdownItem>
                         <DropdownItem divider />
                         <DropdownItem>
