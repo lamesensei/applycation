@@ -58,7 +58,7 @@ class StageContainer extends Component {
     return (
       <div>
         <div className="mt-2 mb-2">
-          <Button size="sm" onClick={this.toggleStageForm}>
+          <Button size="sm" color="yellow" onClick={this.toggleStageForm}>
             Add Stage
           </Button>
         </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Button, UncontrolledAlert } from 'reactstrap';
+import { UncontrolledAlert } from 'reactstrap';
+import { Button } from 'mdbreact';
 import PocForm from './PocForm';
 import PocPanel from './PocPanel';
 import Job from '../functions/job';
@@ -46,9 +47,9 @@ class PocContainer extends Component {
       );
     });
     return (
-      <div>
+      <React.Fragment>
         <div className="mt-2 mb-2">
-          <Button size="sm" onClick={this.togglePocForm}>
+          <Button color="yellow" size="sm" onClick={this.togglePocForm}>
             Add PoC
           </Button>
         </div>
@@ -62,7 +63,7 @@ class PocContainer extends Component {
           )}
         </div>
         {pocs}
-      </div>
+      </React.Fragment>
     );
   }
 }

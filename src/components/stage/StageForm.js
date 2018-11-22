@@ -51,7 +51,7 @@ class StageForm extends Component {
                   name="name"
                   id="name"
                   value={this.state.name}
-                  placeholder="Enter stage title"
+                  placeholder="eg. First interview"
                   required
                   onChange={this.changeHandler}
                 />
@@ -64,7 +64,7 @@ class StageForm extends Component {
                   type="textarea"
                   name="notes"
                   id="notes"
-                  placeholder="Enter notes"
+                  placeholder="eg. Meeting with the boss"
                   value={this.state.notes}
                   onChange={this.changeHandler}
                 />
@@ -82,7 +82,7 @@ class StageForm extends Component {
                 />
               </InputGroup>
             </FormGroup>
-            <Button type="submit" size="sm">
+            <Button color="red" type="submit" size="sm">
               Submit
             </Button>
           </Form>
