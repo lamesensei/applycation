@@ -14,10 +14,11 @@ class JobItem extends Component {
   render() {
     return (
       <MDBCol size="4" className="mt-2">
-        <Card>
+        <Card className="h-100">
           <CardBody>
             <CardTitle>
-              {this.props.title} <small className="float-right">{this.props.company}</small>
+              {this.props.title} <br />
+              <small className="text-muted">{this.props.company}</small>
             </CardTitle>
             <CardText>
               {this.props.job.stages.length > 0 ? (
@@ -36,7 +37,7 @@ class JobItem extends Component {
               )}
             </CardText>
           </CardBody>
-          <CardFooter>
+          <CardFooter className="text-right">
             <Button onClick={this.clickHandler} color="green" size="sm" name="view">
               <i className="far fa-eye" />
             </Button>
