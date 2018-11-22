@@ -39,7 +39,7 @@ class StageForm extends Component {
 
   render() {
     return (
-      <Card className="m-3">
+      <Card className="w-75 mb-3">
         <CardBody>
           <CardTitle>Add Stage</CardTitle>
           <Form onSubmit={this.submitHandler}>

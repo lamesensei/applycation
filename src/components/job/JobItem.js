@@ -20,7 +20,7 @@ class JobItem extends Component {
               {this.props.title} <small className="float-right">{this.props.company}</small>
             </CardTitle>
             <CardText>
-              {this.props.job.stages.length > 0 && (
+              {this.props.job.stages.length > 0 ? (
                 <React.Fragment>
                   {console.log(this.props.job.stages[this.props.job.stages.length - 1])}
                   {this.props.job.stages[this.props.job.stages.length - 1].name}{' '}
@@ -31,6 +31,8 @@ class JobItem extends Component {
                     ).fromNow()}
                   </strong>
                 </React.Fragment>
+              ) : (
+                <React.Fragment>...</React.Fragment>
               )}
             </CardText>
           </CardBody>

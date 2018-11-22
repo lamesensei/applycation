@@ -1,19 +1,6 @@
 import React, { Component } from 'react';
-import {
-  Card,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  CardFooter,
-  Button,
-  ListGroup,
-  InputGroupAddon,
-  InputGroup,
-  Input,
-  Form,
-  FormGroup
-} from 'reactstrap';
+import { InputGroupAddon, InputGroup, Input, Form, FormGroup } from 'reactstrap';
+import { Card, CardBody, CardTitle, CardText, ListGroup, Button, CardFooter } from 'mdbreact';
 
 import Stage from '../functions/stage';
 import TaskItem from '../task/TaskItem';
@@ -24,7 +11,7 @@ class StagePanel extends Component {
   constructor(props) {
     super(props);
     this.dueWhen = moment(props.due, moment.ISO_8601).fromNow();
-    this.dueDate = moment(props.due, moment.ISO_8601).format('Do MMM YYYY, HHmm') + 'H';
+    this.dueDate = moment(props.due, moment.ISO_8601).format('Do MMM YYYY - hh:mm a');
     this.state = {
       task: '',
       tasks: []
@@ -68,22 +55,31 @@ class StagePanel extends Component {
       );
     });
     return (
-      <Card className="mb-2">
-        {/* <CardImg
-          top
-          width="100%"
-          src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
-          alt="Card image cap"
-        /> */}
+      <Card className="mb-3">
         <CardBody>
-          <CardTitle>{this.props.name}</CardTitle>
-          <CardSubtitle>{this.dueDate}</CardSubtitle>
+          <button onClick={this.clickDelete} type="button" className="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <CardTitle>
+            {this.props.name} <small className="text-muted">on {this.dueDate}</small>
+          </CardTitle>
           <CardText>{this.props.notes}</CardText>
+          <CardText small muted>
+            Due {this.dueWhen}
+          </CardText>
         </CardBody>
-        <ListGroup flush>{taskItems}</ListGroup>
+        <hr />
         <CardBody>
+          {this.state.tasks.length === 0 ? (
+            <CardTitle className="text-center">You are all set!</CardTitle>
+          ) : (
+            <CardTitle>Tasks</CardTitle>
+          )}
+          <ListGroup>{taskItems}</ListGroup>
+        </CardBody>
+        <CardFooter className="text-muted">
           <Form onSubmit={this.clickAdd}>
-            <FormGroup>
+            <FormGroup className="mb-0">
               <InputGroup size="sm">
                 <InputGroupAddon addonType="prepend">Add Task</InputGroupAddon>
                 <Input
@@ -96,19 +92,13 @@ class StagePanel extends Component {
                   onChange={this.changeHandler}
                 />
                 <InputGroupAddon addonType="append">
-                  <Button color="success">
+                  <Button type="submit" color="success">
                     <i className="fas fa-plus" />
                   </Button>
                 </InputGroupAddon>
               </InputGroup>
             </FormGroup>
           </Form>
-        </CardBody>
-        <CardFooter className="text-muted">
-          <small>Due {this.dueWhen}</small>
-          <Button className="float-right" size="sm" color="danger" onClick={this.clickDelete}>
-            <i className="fas fa-trash-alt" />
-          </Button>
         </CardFooter>
       </Card>
     );
