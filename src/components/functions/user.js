@@ -27,6 +27,7 @@ const User = {
   find: (id, callback) => {
     const query = `{
   user(where: {id: {_eq: ${id}}}) {
+    created
     first_name
     last_name
     email

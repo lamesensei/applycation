@@ -60,7 +60,7 @@ class JobList extends Component {
         </h3>
       );
     } else if (this.state.isEmpty && this.state.jobs.length === 0)
-      loading = <h3>No applications found... apply for one!</h3>;
+      loading = <h3>No applications found... Surein sure not happy...</h3>;
 
     return (
       <React.Fragment>

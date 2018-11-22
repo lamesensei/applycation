@@ -23,7 +23,6 @@ class JobItem extends Component {
             <CardText>
               {this.props.job.stages.length > 0 ? (
                 <React.Fragment>
-                  {console.log(this.props.job.stages[this.props.job.stages.length - 1])}
                   {this.props.job.stages[this.props.job.stages.length - 1].name}{' '}
                   <strong>
                     {moment(

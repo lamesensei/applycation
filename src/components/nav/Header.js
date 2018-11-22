@@ -15,6 +15,9 @@ import {
   Fa
 } from 'mdbreact';
 
+import User from '../functions/user';
+import moment from 'moment';
+
 import galogo from '../../media/galogo.png';
 
 export default class Header extends Component {
@@ -23,6 +26,7 @@ export default class Header extends Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
+      jobless: 0,
       isOpen: false
     };
   }
@@ -31,6 +35,15 @@ export default class Header extends Component {
       isOpen: !this.state.isOpen
     });
   }
+
+  setJobless = (data) => {
+    const jobless = moment().diff(moment(data.created, moment.ISO_8601), 'days');
+    this.setState({ jobless: this.state.jobless + jobless });
+  };
+
+  componentDidMount = () => {
+    if (localStorage.id) User.find(localStorage.id, this.setJobless);
+  };
 
   render() {
     const navBg = {
@@ -58,7 +71,11 @@ export default class Header extends Component {
                       </DropdownToggle>
                       <DropdownMenu className="dropdown-default" right>
                         <DropdownItem>
-                          <Link to="/profile">Profile</Link>
+                          Jobless for{' '}
+                          <u>
+                            <strong>{this.state.jobless}</strong>
+                          </u>{' '}
+                          day(s)
                         </DropdownItem>
                         <DropdownItem divider />
                         <DropdownItem>
