@@ -125,6 +125,7 @@ const Job = {
     const query = `{
   application(where:{id:{_eq: ${id}}}){
     pocs{
+      id
       name
       role
       email
