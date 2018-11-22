@@ -41,7 +41,7 @@ export default class Header extends Component {
       fontWeight: 700
     };
     return (
-      <Navbar color="black" dark style={navBg} expand="md">
+      <Navbar color="black" dark style={navBg} expand="md" scrolling fixed="top">
         <NavbarBrand style={brandStyle} href="/">
           <img src={galogo} width="30" height="30" alt="logo" /> GENERAL APPLYCATION
         </NavbarBrand>

@@ -28,7 +28,7 @@ class App extends Component {
     };
 
     const row = {
-      // paddingTop: '57px'
+      paddingTop: '57px'
     };
     return (
       <AuthProvider>
