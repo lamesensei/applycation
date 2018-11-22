@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Input, InputGroup, InputGroupAddon } from 'reactstrap';
+import { Form, FormGroup, Input, InputGroup, InputGroupAddon } from 'reactstrap';
+import { Button, Card, CardBody, CardTitle } from 'mdbreact';
 import moment from 'moment';
 
 import Stage from '../functions/stage';
@@ -38,50 +39,55 @@ class StageForm extends Component {
 
   render() {
     return (
-      <div className="m-2">
-        <Form onSubmit={this.submitHandler}>
-          <FormGroup>
-            <InputGroup>
-              <InputGroupAddon addonType="prepend">Name</InputGroupAddon>
-              <Input
-                type="text"
-                name="name"
-                id="name"
-                value={this.state.name}
-                placeholder="Enter stage title"
-                required
-                onChange={this.changeHandler}
-              />
-            </InputGroup>
-          </FormGroup>
-          <FormGroup>
-            <InputGroup>
-              <InputGroupAddon addonType="prepend">Notes</InputGroupAddon>
-              <Input
-                type="textarea"
-                name="notes"
-                id="notes"
-                placeholder="Enter notes"
-                value={this.state.notes}
-                onChange={this.changeHandler}
-              />
-            </InputGroup>
-          </FormGroup>
-          <FormGroup>
-            <InputGroup>
-              <InputGroupAddon addonType="prepend">Due </InputGroupAddon>
-              <Input
-                type="datetime-local"
-                name="due"
-                id="due"
-                value={this.state.due}
-                onChange={this.changeHandler}
-              />
-            </InputGroup>
-          </FormGroup>
-          <Button>Submit</Button>
-        </Form>
-      </div>
+      <Card className="m-3">
+        <CardBody>
+          <CardTitle>Add Stage</CardTitle>
+          <Form onSubmit={this.submitHandler}>
+            <FormGroup>
+              <InputGroup>
+                <InputGroupAddon addonType="prepend">Name</InputGroupAddon>
+                <Input
+                  type="text"
+                  name="name"
+                  id="name"
+                  value={this.state.name}
+                  placeholder="Enter stage title"
+                  required
+                  onChange={this.changeHandler}
+                />
+              </InputGroup>
+            </FormGroup>
+            <FormGroup>
+              <InputGroup>
+                <InputGroupAddon addonType="prepend">Notes</InputGroupAddon>
+                <Input
+                  type="textarea"
+                  name="notes"
+                  id="notes"
+                  placeholder="Enter notes"
+                  value={this.state.notes}
+                  onChange={this.changeHandler}
+                />
+              </InputGroup>
+            </FormGroup>
+            <FormGroup>
+              <InputGroup>
+                <InputGroupAddon addonType="prepend">Due </InputGroupAddon>
+                <Input
+                  type="datetime-local"
+                  name="due"
+                  id="due"
+                  value={this.state.due}
+                  onChange={this.changeHandler}
+                />
+              </InputGroup>
+            </FormGroup>
+            <Button type="submit" size="sm">
+              Submit
+            </Button>
+          </Form>
+        </CardBody>
+      </Card>
     );
   }
 }

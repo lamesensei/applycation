@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Job from '../functions/job';
-import { UncontrolledAlert, ListGroup } from 'reactstrap';
-import { Badge, MDBRow, Spinner } from 'mdbreact';
+import { UncontrolledAlert } from 'reactstrap';
+import { Badge, MDBRow } from 'mdbreact';
 import JobItem from './JobItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
