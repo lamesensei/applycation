@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Button, UncontrolledAlert } from 'reactstrap';
+import { UncontrolledAlert } from 'reactstrap';
+import { Button } from 'mdbreact';
 import StageForm from './StageForm';
 import StagePanel from './StagePanel';
 import Job from '../functions/job';
