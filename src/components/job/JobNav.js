@@ -8,7 +8,9 @@ class JobNav extends React.Component {
       toRender = (
         <Nav tabs>
           <NavItem name="stages" onClick={this.props.changeTab} value="stages">
-            <NavLink active>Stages</NavLink>
+            <NavLink active>
+              <strong>Stages</strong>
+            </NavLink>
           </NavItem>
           <NavItem name="poc" onClick={this.props.changeTab}>
             <NavLink>POC</NavLink>
@@ -25,7 +27,9 @@ class JobNav extends React.Component {
             <NavLink>Stages</NavLink>
           </NavItem>
           <NavItem name="poc" onClick={this.props.changeTab}>
-            <NavLink active>POC</NavLink>
+            <NavLink active>
+              <strong>POC</strong>
+            </NavLink>
           </NavItem>
           <NavItem name="others" onClick={this.props.changeTab}>
             <NavLink>Others</NavLink>
@@ -42,7 +46,9 @@ class JobNav extends React.Component {
             <NavLink>POC</NavLink>
           </NavItem>
           <NavItem name="others" onClick={this.props.changeTab}>
-            <NavLink active>Others</NavLink>
+            <NavLink active>
+              <strong>Others</strong>
+            </NavLink>
           </NavItem>
         </Nav>
       );
