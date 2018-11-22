@@ -76,6 +76,10 @@ class StageContainer extends Component {
           )}
         </div>
         {stages}
+        <div className="d-flex justify-content-center align-items-center">
+          {this.state.stages.length === 0 &&
+            !this.state.showStageForm && <h3>"No interview or meeting - apply job for what!"</h3>}
+        </div>
       </div>
     );
   }

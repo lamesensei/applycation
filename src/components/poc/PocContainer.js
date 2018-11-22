@@ -63,6 +63,10 @@ class PocContainer extends Component {
           )}
         </div>
         {pocs}
+        <div className="d-flex justify-content-center align-items-center">
+          {this.state.pocs.length === 0 &&
+            !this.state.showForm && <h3>"Speaking to ghost ah? Add a point of contact!"</h3>}
+        </div>
       </React.Fragment>
     );
   }
