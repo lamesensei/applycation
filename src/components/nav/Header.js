@@ -2,16 +2,18 @@ import React, { Component } from 'react';
 import { AuthConsumer } from '../auth/AuthContext';
 import { Link } from 'react-router-dom';
 import {
-  Collapse,
   Navbar,
-  NavbarToggler,
   NavbarBrand,
-  Nav,
-  UncontrolledDropdown,
+  NavbarNav,
+  NavItem,
+  NavbarToggler,
+  Collapse,
+  Dropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
-} from 'reactstrap';
+  DropdownItem,
+  Fa
+} from 'mdbreact';
 
 import galogo from '../../media/galogo.png';
 
@@ -32,55 +34,51 @@ export default class Header extends Component {
 
   render() {
     const navBg = {
-      background: 'black'
+      // background: 'black'
     };
     const brandStyle = {
       fontFamily: ['Changa', 'sans-serif'],
       fontWeight: 700
     };
     return (
-      <Navbar fixed="top" dark style={navBg} expand="md">
+      <Navbar color="black" dark style={navBg} expand="md">
         <NavbarBrand style={brandStyle} href="/">
           <img src={galogo} width="30" height="30" alt="logo" /> GENERAL APPLYCATION
         </NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
-        <Collapse isOpen={this.state.isOpen} navbar>
-          <Nav className="ml-auto" navbar>
-            <AuthConsumer>
-              {({ logout, who }) =>
-                who ? (
-                  <UncontrolledDropdown nav inNavbar>
-                    <DropdownToggle nav caret>
-                      {who}
-                    </DropdownToggle>
-                    <DropdownMenu right>
-                      <DropdownItem>
-                        <Link to="/profile">Profile</Link>
-                      </DropdownItem>
-                      <DropdownItem divider />
-                      <DropdownItem>
-                        <Link onClick={logout} to="/">
-                          Logout
-                        </Link>
-                      </DropdownItem>
-                    </DropdownMenu>
-                  </UncontrolledDropdown>
-                ) : (
-                  <Link className="nav-link" to="/login">
-                    Login
-                  </Link>
-                )
-              }
-            </AuthConsumer>
-          </Nav>
+        <Collapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
+          <NavbarNav right>
+            <NavItem>
+              <AuthConsumer>
+                {({ logout, who }) =>
+                  who ? (
+                    <Dropdown>
+                      <DropdownToggle nav caret>
+                        <Fa icon="user" /> {who}
+                      </DropdownToggle>
+                      <DropdownMenu className="dropdown-default" right>
+                        <DropdownItem>
+                          <Link to="/profile">Profile</Link>
+                        </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem>
+                          <Link onClick={logout} to="/">
+                            Logout
+                          </Link>
+                        </DropdownItem>
+                      </DropdownMenu>
+                    </Dropdown>
+                  ) : (
+                    <Link className="nav-link" to="/login">
+                      Login
+                    </Link>
+                  )
+                }
+              </AuthConsumer>
+            </NavItem>
+          </NavbarNav>
         </Collapse>
       </Navbar>
     );
   }
 }
-
-// NavbarToggler.propTypes = {
-//   type: PropTypes.string,
-//   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
-//   // pass in custom element to use
-// };
