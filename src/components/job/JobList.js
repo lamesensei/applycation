@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Job from '../functions/job';
 import { UncontrolledAlert, ListGroup } from 'reactstrap';
+import { Badge, MDBRow, Spinner } from 'mdbreact';
 import JobItem from './JobItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -8,14 +9,23 @@ class JobList extends Component {
   constructor() {
     super();
     this.state = {
+      isEmpty: false,
       jobs: [],
       jobDeleted: ''
     };
   }
 
-  populateJobs = (data) => {
-    if (data.length >= 1) this.setState({ jobs: [...data] });
-    else this.setState({ jobs: [] });
+  populateJobs = (data, isEmpty) => {
+    if (!isEmpty)
+      this.setState({
+        jobs: [...data],
+        isEmpty: false
+      });
+    else
+      this.setState({
+        jobs: [],
+        isEmpty: true
+      });
   };
 
   deleteHandler = (name) => {
@@ -36,27 +46,35 @@ class JobList extends Component {
           key={item.id}
           id={item.id}
           title={item.title}
-          notes={item.notes}
+          company={item.company.name}
           job={item}
           deleteHandler={this.deleteHandler}
         />
       );
     });
+    let loading = null;
+    if (!this.state.isEmpty && this.state.jobs.length === 0) {
+      loading = (
+        <h3>
+          <FontAwesomeIcon icon="spinner" spin />
+        </h3>
+      );
+    } else if (this.state.isEmpty && this.state.jobs.length === 0)
+      loading = <h3>No applications found... apply for one!</h3>;
+
     return (
-      <div className="p-2">
-        <h1>Jobs</h1>
+      <React.Fragment>
         {this.state.jobDeleted && (
           <UncontrolledAlert color="danger">{this.state.jobDeleted} deleted!</UncontrolledAlert>
         )}
-        <ListGroup>
-          {this.state.jobs.length === 0 && (
-            <h3 className="text-center">
-              <FontAwesomeIcon icon="spinner" spin />
-            </h3>
-          )}
-          {jobs}
-        </ListGroup>
-      </div>
+        <div className="p-2">
+          <h1>
+            Active Applications <Badge color="red">{this.state.jobs.length}</Badge>
+          </h1>
+          {loading}
+          <MDBRow>{jobs}</MDBRow>
+        </div>
+      </React.Fragment>
     );
   }
 }

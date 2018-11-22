@@ -10,10 +10,10 @@ class Left extends Component {
           <strong>Profile</strong>
         </Link>
         <Link className="nav-link nav-item text-white" to="/job/apply" data-toggle="pills">
-          <strong>New Job</strong>
+          <strong>Apply</strong>
         </Link>
         <Link className="nav-link nav-item text-white" to="/jobs" data-toggle="pills">
-          <strong>List Jobs</strong>
+          <strong>Applications</strong>
         </Link>
       </Nav>
     );

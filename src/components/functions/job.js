@@ -8,6 +8,13 @@ const Job = {
       id
       title
       stages{
+        id
+        name
+        value
+        due
+      }
+      company{
+        id
         name
       }
     }
@@ -15,7 +22,8 @@ const Job = {
 }`;
     gqlClient.request(query).then((data) => {
       const { applications } = data.user[0];
-      callback(applications);
+      if (applications.length > 0) callback(applications, false);
+      else callback(applications, true);
     });
   },
 

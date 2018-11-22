@@ -39,7 +39,7 @@ class App extends Component {
               <MDBCol md="2" className="p-3 side" style={left}>
                 <Left />
               </MDBCol>
-              <MDBCol md="10" className="p-3 main border" style={main}>
+              <MDBCol md="10" className="p-3 main" style={main}>
                 <Switch>
                   <Route path="/login" render={(props) => <LoginForm {...props} />} />
                   <Route path="/signup" component={SignupForm} />

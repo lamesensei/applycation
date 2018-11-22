@@ -1,33 +1,60 @@
 import React, { Component } from 'react';
-import { Button, ButtonGroup, ListGroupItem } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import {
+  Button,
+  Card,
+  CardBody,
+  CardImage,
+  CardTitle,
+  CardText,
+  MDBCol,
+  CardFooter
+} from 'mdbreact';
+import { Link, withRouter } from 'react-router-dom';
 import Job from '../functions/job';
+import moment from 'moment';
 
 class JobItem extends Component {
-  clickHandler = () => {
-    Job.destroy(this.props.id, this.props.deleteHandler);
+  clickHandler = (event) => {
+    const action = event.target.getAttribute('name');
+    if (action === 'view') this.props.history.push(`/job/${this.props.id}`);
+    else Job.destroy(this.props.id, this.props.deleteHandler);
   };
+
   render() {
     return (
-      <ListGroupItem>
-        <ButtonGroup>
-          <Button outline color="secondary">
-            <Link className="font-weight-bold text-black" to={`/job/${this.props.id}`}>
-              {this.props.title}
-            </Link>
-          </Button>
-
-          <Button>Stages</Button>
-          {this.props.job.stages.map((stage, index) => {
-            return <Button key={index}>{stage.name}</Button>;
-          })}
-        </ButtonGroup>
-        <Button onClick={this.clickHandler} color="danger" className="float-right">
-          <i className="fas fa-trash-alt" />
-        </Button>
-      </ListGroupItem>
+      <MDBCol size="4" className="mt-2">
+        <Card>
+          <CardBody>
+            <CardTitle>
+              {this.props.title} <small className="float-right">{this.props.company}</small>
+            </CardTitle>
+            <CardText>
+              {this.props.job.stages.length > 0 && (
+                <React.Fragment>
+                  {console.log(this.props.job.stages[this.props.job.stages.length - 1])}
+                  {this.props.job.stages[this.props.job.stages.length - 1].name}{' '}
+                  <strong>
+                    {moment(
+                      this.props.job.stages[this.props.job.stages.length - 1].due,
+                      moment.ISO_8601
+                    ).fromNow()}
+                  </strong>
+                </React.Fragment>
+              )}
+            </CardText>
+          </CardBody>
+          <CardFooter>
+            <Button onClick={this.clickHandler} color="green" size="sm" name="view">
+              <i className="far fa-eye" />
+            </Button>
+            <Button onClick={this.clickHandler} color="danger" size="sm" name="delete">
+              <i className="fas fa-trash-alt" />
+            </Button>
+          </CardFooter>
+        </Card>
+      </MDBCol>
     );
   }
 }
 
-export default JobItem;
+export default withRouter(JobItem);
