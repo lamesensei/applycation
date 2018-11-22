@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ListGroupItem, Button } from 'reactstrap';
+import { ListGroupItem, Button } from 'mdbreact';
 import Task from '../functions/task';
 
 class TaskItem extends Component {
@@ -8,10 +8,10 @@ class TaskItem extends Component {
   };
   render() {
     return (
-      <ListGroupItem className="d-flex justify-content-between">
+      <ListGroupItem className="d-flex justify-content-between align-items-center">
         {this.props.value}
         <Button onClick={this.clickHandler} size="sm">
-          <i className="fas fa-times" />
+          <i className="fas fa-check" />
         </Button>
       </ListGroupItem>
     );

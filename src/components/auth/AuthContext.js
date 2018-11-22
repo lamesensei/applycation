@@ -47,7 +47,6 @@ class AuthProvider extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <AuthContext.Provider
         value={{

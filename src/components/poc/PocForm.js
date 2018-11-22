@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, Input, InputGroup, InputGroupAddon } from 'reactstrap';
-import { Button, Card, CardBody, CardTitle } from 'mdbreact';
-import moment from 'moment';
+import { Button, Form, FormGroup, Input, InputGroup, InputGroupAddon } from 'reactstrap';
+import { Card, CardBody, CardTitle } from 'mdbreact';
+import Poc from '../functions/poc';
 
-import Stage from '../functions/stage';
-
-class StageForm extends Component {
+class PocForm extends Component {
   constructor(props) {
     super(props);
-    this.now = moment().format(moment.HTML5_FMT.DATETIME_LOCAL);
     this.state = {
       name: '',
-      notes: '',
-      due: this.now
+      role: '',
+      email: '',
+      tel: ''
     };
   }
 
@@ -27,11 +25,11 @@ class StageForm extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-    const convertedTime = moment(this.state.due, moment.HTML5_FMT.DATETIME_LOCAL).toISOString();
-    Stage.create(
+    Poc.create(
       this.state.name,
-      this.state.notes,
-      convertedTime,
+      this.state.role,
+      this.state.email,
+      this.state.tel,
       this.props.jobId,
       this.props.toggleOff
     );
@@ -41,7 +39,7 @@ class StageForm extends Component {
     return (
       <Card className="w-75 mb-3">
         <CardBody>
-          <CardTitle>Add Stage</CardTitle>
+          <CardTitle>Add Point of Contact</CardTitle>
           <Form onSubmit={this.submitHandler}>
             <FormGroup>
               <InputGroup>
@@ -51,7 +49,7 @@ class StageForm extends Component {
                   name="name"
                   id="name"
                   value={this.state.name}
-                  placeholder="eg. First interview"
+                  placeholder="John Doe / HR Department"
                   required
                   onChange={this.changeHandler}
                 />
@@ -59,25 +57,39 @@ class StageForm extends Component {
             </FormGroup>
             <FormGroup>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Notes</InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Role</InputGroupAddon>
                 <Input
-                  type="textarea"
-                  name="notes"
-                  id="notes"
-                  placeholder="eg. Meeting with the boss"
-                  value={this.state.notes}
+                  type="text"
+                  name="role"
+                  id="role"
+                  placeholder="Hiring Manager / Boss"
+                  value={this.state.role}
                   onChange={this.changeHandler}
                 />
               </InputGroup>
             </FormGroup>
             <FormGroup>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Due </InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Email</InputGroupAddon>
                 <Input
-                  type="datetime-local"
-                  name="due"
-                  id="due"
-                  value={this.state.due}
+                  type="text"
+                  name="email"
+                  id="email"
+                  placeholder="poc@email.com"
+                  value={this.state.email}
+                  onChange={this.changeHandler}
+                />
+              </InputGroup>
+            </FormGroup>
+            <FormGroup>
+              <InputGroup>
+                <InputGroupAddon addonType="prepend">Telephone</InputGroupAddon>
+                <Input
+                  type="text"
+                  name="tel"
+                  id="tel"
+                  placeholder="+65 12345678"
+                  value={this.state.tel}
                   onChange={this.changeHandler}
                 />
               </InputGroup>
@@ -92,4 +104,4 @@ class StageForm extends Component {
   }
 }
 
-export default StageForm;
+export default PocForm;

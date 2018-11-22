@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import Job from '../functions/job';
-import { Button, UncontrolledAlert } from 'reactstrap';
-import StageForm from '../stage/StageForm';
-import StagePanel from '../stage/StagePanel';
 import JobNav from './JobNav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PocContainer from '../poc/PocContainer';
+import StageContainer from '../stage/StageContainer';
 
 class JobView extends Component {
   constructor(props) {
@@ -59,52 +58,36 @@ class JobView extends Component {
   };
 
   render() {
-    const stages = this.state.stages
-      .slice(0)
-      .reverse()
-      .map((item) => {
-        return (
-          <StagePanel
-            key={item.id}
-            id={item.id}
-            name={item.name}
-            due={item.due}
-            notes={item.value}
-            deleteHandler={this.deleteHandler}
-          />
-        );
-      });
+    let toRender = null;
+
+    const stageContainer = <StageContainer jobId={this.jobId} />;
+
+    const pocs = <PocContainer jobId={this.jobId} />;
+
+    switch (this.state.currentTab) {
+      case 'stages':
+        toRender = stageContainer;
+        break;
+      case 'poc':
+        toRender = pocs;
+        break;
+      default:
+        break;
+    }
+
     return (
-      <div>
+      <div className="p-5">
         {this.state.title ? (
-          <h1 className="tada">
+          <h1>
             {this.state.title}, <small>{this.state.company.name}</small>
           </h1>
         ) : (
-          <h1 className="tada">
+          <h1>
             <FontAwesomeIcon icon="spinner" spin />
           </h1>
         )}
         <JobNav changeTab={this.changeTab} currentTab={this.state.currentTab} />
-        <div className="mt-2 mb-2">
-          <Button size="sm" onClick={this.toggleStageForm}>
-            Add Stage
-          </Button>
-        </div>
-        {this.state.showStageForm && (
-          <StageForm jobId={this.props.match.params.id} toggleOff={this.toggleStageForm} />
-        )}
-        <div>
-          {this.state.stageCreated && (
-            <UncontrolledAlert color="success">
-              {this.state.stageCreated} created!
-            </UncontrolledAlert>
-          )}
-          {this.state.stageDeleted && (
-            <UncontrolledAlert color="danger">{this.state.stageDeleted} deleted!</UncontrolledAlert>
-          )}
-        </div>
-        <div>{stages}</div>
+        <div>{toRender}</div>
       </div>
     );
   }

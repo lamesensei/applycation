@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
+import { AuthProvider } from './components/auth/AuthContext';
 import Header from './components/nav/Header';
 import Left from './components/nav/Left';
 import LoginForm from './components/user/LoginForm';
@@ -7,27 +8,49 @@ import ApplicationForm from './components/job/ApplicationForm';
 import SignupForm from './components/user/SignupForm';
 import JobView from './components/job/JobView';
 import JobList from './components/job/JobList';
-import { AuthProvider } from './components/auth/AuthContext';
-import { library } from '@fortawesome/fontawesome-svg-core';
-// import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import ProfileView from './components/user/ProfileView';
+import Landing from './components/landing/Landing';
+
+import { MDBContainer, MDBRow, MDBCol } from 'mdbreact';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faSpinner);
 
 class App extends Component {
   render() {
+    const left = {
+      background: '#212121',
+      height: '100%'
+    };
+
+    const main = {
+      overflow: 'scroll'
+    };
+
+    const row = {
+      paddingTop: '57px'
+    };
+
+    let sideClass = 'side';
+    let mainMd = '10';
+
+    if (!localStorage.id) {
+      sideClass = 'd-none';
+      mainMd = '12';
+    }
     return (
       <AuthProvider>
         <div className="App h-100">
           <Header />
-          <div className="container-fluid h-100 p-4">
-            <div className="row">
-              <div className="col-md-2 p-3 side">
+          <MDBContainer fluid className="h-100 p-0">
+            <MDBRow className="h-100 no-gutters" style={row}>
+              <MDBCol md="2" className={sideClass} style={left}>
                 <Left />
-              </div>
-              <div className="col-md-10 p-3 main border">
+              </MDBCol>
+              <MDBCol md={mainMd} className="main" style={main}>
                 <Switch>
+                  <Route exact path="/" component={Landing} />
                   <Route path="/login" render={(props) => <LoginForm {...props} />} />
                   <Route path="/signup" component={SignupForm} />
                   <Route path="/job/apply" component={ApplicationForm} />
@@ -35,9 +58,9 @@ class App extends Component {
                   <Route path="/jobs" component={JobList} />
                   <Route path="/profile" component={ProfileView} />
                 </Switch>
-              </div>
-            </div>
-          </div>
+              </MDBCol>
+            </MDBRow>
+          </MDBContainer>
         </div>
       </AuthProvider>
     );

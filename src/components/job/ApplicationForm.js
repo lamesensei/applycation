@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Input, InputGroup, InputGroupAddon } from 'reactstrap';
 import Job from '../functions/job';
 
 class ApplicationForm extends Component {
@@ -33,38 +33,45 @@ class ApplicationForm extends Component {
   };
 
   componentDidMount = () => {
-    if (!localStorage.id) this.props.history.push('/');
+    if (!localStorage.id) this.props.history.push('/login');
   };
   render() {
     return (
-      <div>
-        <h1>Create new job application</h1>
+      <div className="p-5">
+        <h1>Track Applycation</h1>
+        <br />
         <Form onSubmit={this.submitHandler}>
           <FormGroup>
-            <Label for="title">Title</Label>
-            <Input
-              type="text"
-              name="title"
-              id="title"
-              value={this.state.title}
-              placeholder="Enter application title"
-              required
-              onChange={this.changeHandler}
-            />
+            <InputGroup>
+              <InputGroupAddon addonType="prepend">Title</InputGroupAddon>
+              <Input
+                type="text"
+                name="title"
+                id="title"
+                value={this.state.title}
+                placeholder="Eg. CEO"
+                required
+                onChange={this.changeHandler}
+              />
+            </InputGroup>
           </FormGroup>
+
           <FormGroup>
-            <Label for="companyName">Company</Label>
-            <Input
-              type="text"
-              name="companyName"
-              id="companyName"
-              placeholder="Enter company name"
-              value={this.state.companyName}
-              required
-              onChange={this.changeHandler}
-            />
+            <InputGroup>
+              <InputGroupAddon addonType="prepend">Company</InputGroupAddon>
+              <Input
+                type="text"
+                name="companyName"
+                id="companyName"
+                placeholder="Eg. Google"
+                value={this.state.companyName}
+                required
+                onChange={this.changeHandler}
+              />
+            </InputGroup>
           </FormGroup>
-          <Button>Submit</Button>
+
+          <Button color="danger">Submit</Button>
         </Form>
       </div>
     );
