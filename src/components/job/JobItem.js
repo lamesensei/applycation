@@ -1,15 +1,6 @@
 import React, { Component } from 'react';
-import {
-  Button,
-  Card,
-  CardBody,
-  CardImage,
-  CardTitle,
-  CardText,
-  MDBCol,
-  CardFooter
-} from 'mdbreact';
-import { Link, withRouter } from 'react-router-dom';
+import { Button, Card, CardBody, CardTitle, CardText, MDBCol, CardFooter } from 'mdbreact';
+import { withRouter } from 'react-router-dom';
 import Job from '../functions/job';
 import moment from 'moment';
 
@@ -17,7 +8,7 @@ class JobItem extends Component {
   clickHandler = (event) => {
     const action = event.target.getAttribute('name');
     if (action === 'view') this.props.history.push(`/job/${this.props.id}`);
-    else Job.destroy(this.props.id, this.props.deleteHandler);
+    else if (action === 'delete') Job.destroy(this.props.id, this.props.deleteHandler);
   };
 
   render() {
