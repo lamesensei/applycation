@@ -7,14 +7,36 @@ class Landing extends Component {
   };
 
   render() {
-    const style = {
+    const background = {
       backgroundImage: `url(${landing})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center'
     };
+
+    const fancy = {
+      background: 'black'
+    };
+
     return (
-      <div className="h-100 d-flex justify-content-center align-items-center" style={style}>
-        <h1 className="white-text">YO</h1>
+      <div
+        className="h-100 d-flex flex-column justify-content-center align-items-center"
+        style={background}
+      >
+        <h1 className="white-text d-block">
+          <span style={fancy}>insert fancy title</span>
+        </h1>
+        <h1 className="white-text d-block">
+          <span style={fancy}>insert fancy subtitle</span>
+        </h1>
+        <h1 className="white-text d-block">
+          <span style={fancy}>insert tagline</span>
+        </h1>
+        <h1 className="white-text d-block">
+          <span style={fancy}>insert link</span>
+        </h1>
+        <h1 className="white-text d-block">
+          <span style={fancy}>insert</span>
+        </h1>
       </div>
     );
   }

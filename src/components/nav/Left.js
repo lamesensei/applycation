@@ -17,7 +17,7 @@ class Left extends Component {
             <strong>Applications</strong>
           </Link>
         </Nav>
-        <p className="pl-4 pr-4 text-white">
+        <p className="text-center text-white">
           made by <strong>LJ</strong>
         </p>
       </div>

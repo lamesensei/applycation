@@ -102,6 +102,9 @@ const Job = {
 
   destroy: (id, callback) => {
     const query = `mutation delete_job {
+   delete_poc(where:{application_id:{_eq: ${id}}}){
+    affected_rows
+  }
   delete_task(where:{stage:{application_id:{_eq: ${id}}}}){
     affected_rows
   }

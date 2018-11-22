@@ -10,7 +10,7 @@ const User = {
       first_name: "${first}"
       last_name: "${last}"
       email: "${email}"
-      tel: ${parseInt(tel)}
+      tel: "${tel}"
     }
   ]) {
     returning{

@@ -31,16 +31,24 @@ class App extends Component {
     const row = {
       paddingTop: '57px'
     };
+
+    let sideClass = 'side';
+    let mainMd = '10';
+
+    if (!localStorage.id) {
+      sideClass = 'd-none';
+      mainMd = '12';
+    }
     return (
       <AuthProvider>
         <div className="App h-100">
           <Header />
           <MDBContainer fluid className="h-100 p-0">
             <MDBRow className="h-100 no-gutters" style={row}>
-              <MDBCol md="2" className="side" style={left}>
+              <MDBCol md="2" className={sideClass} style={left}>
                 <Left />
               </MDBCol>
-              <MDBCol md="10" className="main" style={main}>
+              <MDBCol md={mainMd} className="main" style={main}>
                 <Switch>
                   <Route exact path="/" component={Landing} />
                   <Route path="/login" render={(props) => <LoginForm {...props} />} />

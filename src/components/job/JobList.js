@@ -64,10 +64,10 @@ class JobList extends Component {
 
     return (
       <React.Fragment>
-        {this.state.jobDeleted && (
-          <UncontrolledAlert color="danger">{this.state.jobDeleted} deleted!</UncontrolledAlert>
-        )}
         <div className="p-5">
+          {this.state.jobDeleted && (
+            <UncontrolledAlert color="danger">{this.state.jobDeleted} deleted!</UncontrolledAlert>
+          )}
           <h1>
             Active Applications <Badge color="red">{this.state.jobs.length}</Badge>
           </h1>
