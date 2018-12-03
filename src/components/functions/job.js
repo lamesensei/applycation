@@ -7,11 +7,13 @@ const Job = {
     applications{
       id
       title
+      created
       stages{
         id
         name
         value
         due
+        created
       }
       company{
         id
