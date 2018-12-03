@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { UncontrolledAlert } from 'reactstrap';
-import { Button } from 'mdbreact';
+import { Button, MDBRow } from 'mdbreact';
 import PocForm from './PocForm';
 import PocPanel from './PocPanel';
 import Job from '../functions/job';
@@ -42,6 +42,7 @@ class PocContainer extends Component {
           role={item.role}
           email={item.email}
           tel={item.tel}
+          image={item.image_url}
           deleteHandler={this.deleteHandler}
         />
       );
@@ -62,7 +63,7 @@ class PocContainer extends Component {
             <UncontrolledAlert color="danger">{this.state.pocDeleted} deleted!</UncontrolledAlert>
           )}
         </div>
-        {pocs}
+        <MDBRow>{pocs}</MDBRow>
         <div className="d-flex justify-content-center align-items-center">
           {this.state.pocs.length === 0 &&
             !this.state.showForm && <h3>"Speaking to ghost ah? Add a point of contact!"</h3>}

@@ -135,6 +135,7 @@ const Job = {
       role
       email
       tel
+      image_url
     }
   }
 }`;

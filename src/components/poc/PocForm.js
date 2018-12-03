@@ -10,7 +10,9 @@ class PocForm extends Component {
       name: '',
       role: '',
       email: '',
-      tel: ''
+      tel: '',
+      image: '',
+      fileName: ''
     };
   }
 
@@ -23,6 +25,14 @@ class PocForm extends Component {
     });
   };
 
+  fileHandler = (event) => {
+    const file = event.target.files[0];
+    this.setState({
+      image: file,
+      fileName: file.name
+    });
+  };
+
   submitHandler = (event) => {
     event.preventDefault();
     Poc.create(
@@ -31,6 +41,7 @@ class PocForm extends Component {
       this.state.email,
       this.state.tel,
       this.props.jobId,
+      this.state.image,
       this.props.toggleOff
     );
   };
@@ -94,6 +105,25 @@ class PocForm extends Component {
                 />
               </InputGroup>
             </FormGroup>
+            <div className="form-group">
+              <div className="input-group">
+                <div className="input-group-prepend">
+                  <span className="input-group-text">Upload</span>
+                </div>
+                <div className="custom-file">
+                  <input
+                    type="file"
+                    className="custom-file-input"
+                    id="fileinput"
+                    onChange={this.fileHandler}
+                    aria-describedby="inputGroupFileAddon01"
+                  />
+                  <label className="custom-file-label" htmlFor="fileinput">
+                    {this.state.fileName}
+                  </label>
+                </div>
+              </div>
+            </div>
             <Button color="red" type="submit" size="sm">
               Submit
             </Button>
