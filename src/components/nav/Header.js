@@ -26,7 +26,6 @@ export default class Header extends Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      jobless: 0,
       isOpen: false
     };
   }
@@ -36,13 +35,14 @@ export default class Header extends Component {
     });
   }
 
-  setJobless = (data) => {
-    const jobless = moment().diff(moment(data.created, moment.ISO_8601), 'days');
-    this.setState({ jobless: this.state.jobless + jobless });
+  setJobless = (date) => {
+    const jobless = moment().diff(moment(date, moment.ISO_8601), 'days');
+    return jobless;
   };
 
   componentDidMount = () => {
     if (localStorage.id) User.find(localStorage.id, this.setJobless);
+    console.log('mounted');
   };
 
   render() {
@@ -63,7 +63,7 @@ export default class Header extends Component {
           <NavbarNav right>
             <NavItem>
               <AuthConsumer>
-                {({ logout, who }) =>
+                {({ logout, who, created }) =>
                   who ? (
                     <Dropdown>
                       <DropdownToggle nav caret>
@@ -71,10 +71,8 @@ export default class Header extends Component {
                       </DropdownToggle>
                       <DropdownMenu className="dropdown-default" right>
                         <DropdownItem>
-                          Jobless for{' '}
-                          <u>
-                            <strong>{this.state.jobless}</strong>
-                          </u>{' '}
+                          Jobless for
+                          <strong> {this.setJobless(created)} </strong>
                           days
                         </DropdownItem>
                         <DropdownItem divider />

@@ -8,19 +8,20 @@ class AuthProvider extends Component {
     super();
     this.state = {
       who: localStorage.who,
-      id: localStorage.id
+      id: localStorage.id,
+      created: localStorage.created
     };
   }
 
   login = (user, pass) => {
     return new Promise((resolve, reject) => {
-      Auth.authenticate(user, pass).then((data) => {
+      Auth.retrieve(user).then((data) => {
         console.log(data);
         if (data.user.length > 0) {
           bcryptjs.compare(pass, data.user[0].password).then((res) => {
             console.log(res);
             if (res) {
-              this.success(data.user[0].name, data.user[0].id);
+              this.success(data.user[0].name, data.user[0].id, data.user[0].created);
               resolve(true);
             } else reject(Error('passwordwrong'));
           });
@@ -29,13 +30,15 @@ class AuthProvider extends Component {
     });
   };
 
-  success = (who, id) => {
+  success = (who, id, created) => {
     if (who) {
       localStorage.setItem('who', who);
       localStorage.setItem('id', id);
+      localStorage.setItem('created', created);
       this.setState({
         who: who,
-        id: id
+        id: id,
+        created: created
       });
     }
   };
@@ -43,9 +46,11 @@ class AuthProvider extends Component {
   logout = () => {
     localStorage.removeItem('who');
     localStorage.removeItem('id');
+    localStorage.removeItem('created');
     this.setState({
       id: null,
-      who: null
+      who: null,
+      created: null
     });
   };
 
@@ -56,7 +61,8 @@ class AuthProvider extends Component {
           who: this.state.who,
           id: this.state.id,
           login: this.login,
-          logout: this.logout
+          logout: this.logout,
+          created: this.state.created
         }}
       >
         {this.props.children}
