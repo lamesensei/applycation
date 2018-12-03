@@ -3,19 +3,11 @@ import gqlClient from './gql';
 const Auth = {
   authenticate: (user, pass, callback) => {
     const login = `{
-        user (
-            where: {
-            _and: [
-                {name: {_eq: "${user}"}},
-                {password: {_eq: "${pass}"}}
-                ]
-            }
-        )
-    {
-        id
-        name
-        password
-    }
+  user(where: {name: {_eq: "${user}"}}) {
+    id
+    name
+    password
+  }
 }`;
 
     return gqlClient.request(login);
