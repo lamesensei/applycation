@@ -42,7 +42,6 @@ export default class Header extends Component {
 
   componentDidMount = () => {
     if (localStorage.id) User.find(localStorage.id, this.setJobless);
-    console.log('mounted');
   };
 
   render() {
