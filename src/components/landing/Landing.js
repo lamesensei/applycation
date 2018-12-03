@@ -15,6 +15,8 @@ class Landing extends Component {
 
     const fancy = {
       background: 'black'
+      // fontFamily: ['Changa', 'sans-serif'],
+      // fontWeight: 700
     };
 
     return (
@@ -22,21 +24,12 @@ class Landing extends Component {
         className="h-100 d-flex flex-column justify-content-center align-items-center"
         style={background}
       >
-        <h1 className="white-text d-block">
-          <span style={fancy}>insert fancy title</span>
+        <h1 className="display-1 text-white" style={fancy}>
+          APPLYCATION
         </h1>
-        <h1 className="white-text d-block">
-          <span style={fancy}>insert fancy subtitle</span>
-        </h1>
-        <h1 className="white-text d-block">
-          <span style={fancy}>insert tagline</span>
-        </h1>
-        <h1 className="white-text d-block">
-          <span style={fancy}>insert link</span>
-        </h1>
-        <h1 className="white-text d-block">
-          <span style={fancy}>insert</span>
-        </h1>
+        <h2 className="text-white" style={fancy}>
+          Your job offers, applications and tasks all in one location.
+        </h2>
       </div>
     );
   }
