@@ -21,6 +21,7 @@ const Poc = {
       .catch((error) => console.error(error))
       .then((data) => {
         imageUrl = data.secure_url;
+        if (imageUrl === undefined) imageUrl = 'https://via.placeholder.com/300';
         const query = `mutation insert_poc{
   insert_poc(objects:[
     {
