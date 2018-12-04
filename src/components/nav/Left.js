@@ -5,8 +5,8 @@ import { Nav } from 'reactstrap';
 class Left extends Component {
   render() {
     return (
-      <div className="h-100 d-flex flex-column justify-content-between align-items-between">
-        <Nav className="mt-3" vertical>
+      <div className="d-flex flex-column align-items-center">
+        <Nav className="mt-3 flex-md-column">
           <Link className="nav-link nav-item text-white" to="/profile" data-toggle="pills">
             <strong>Profile</strong>
           </Link>
@@ -17,9 +17,9 @@ class Left extends Component {
             <strong>Applications</strong>
           </Link>
         </Nav>
-        <p className="text-center text-white">
+        {/* <p className="text-center text-white d-none d-lg-block d-xl-none">
           made by <strong>LJ</strong>
-        </p>
+        </p> */}
       </div>
     );
   }

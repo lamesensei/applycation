@@ -20,8 +20,7 @@ library.add(faSpinner);
 class App extends Component {
   render() {
     const left = {
-      background: '#212121',
-      height: '100%'
+      background: '#212121'
     };
 
     const main = {
@@ -32,7 +31,7 @@ class App extends Component {
       paddingTop: '57px'
     };
 
-    let sideClass = 'side';
+    let sideClass = 'h-auto';
     let mainMd = '10';
 
     if (!localStorage.id) {
@@ -45,10 +44,10 @@ class App extends Component {
           <Header />
           <MDBContainer fluid className="h-100 p-0">
             <MDBRow className="h-100 no-gutters" style={row}>
-              <MDBCol md="2" className={sideClass} style={left}>
+              <MDBCol md="2" sm="1" className={sideClass} style={left}>
                 <Left />
               </MDBCol>
-              <MDBCol md={mainMd} className="main" style={main}>
+              <MDBCol md={mainMd} sm="11" className="main" style={main}>
                 <Switch>
                   <Route exact path="/" component={Landing} />
                   <Route path="/login" render={(props) => <LoginForm {...props} />} />
